@@ -11,7 +11,16 @@ w = 0.3;
 L = 2;
 d = 0.03;
 n = 10;
-disp('Numerisk l?sning')
+
+disp('Numerisk losning')
 y = ebbeam(E,L,d,D,w,n)
 
-disp('Faktisk l?sning')
+disp('Faktisk losning')
+
+disp('Oppgave 5')
+
+for i = 1 : 11
+    disp('yolo')
+    c = 10 * 2^i
+    y = ebbeam(E,L,d,D,w,c)
+end
