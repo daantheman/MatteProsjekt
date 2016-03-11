@@ -7,3 +7,5 @@
 \contentsline {subsection}{\numberline {4.1}Oppgave 1}{7}{subsection.4.1}
 \contentsline {subsubsection}{\numberline {4.1.1}Oppgave 5.1.21}{7}{subsubsection.4.1.1}
 \contentsline {subsubsection}{\numberline {4.1.2}Oppgave 5.1.22a}{8}{subsubsection.4.1.2}
+\contentsline {subsection}{\numberline {4.2}Oppgave 2}{9}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Oppgave 3}{9}{subsection.4.3}
