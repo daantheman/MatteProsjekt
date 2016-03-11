@@ -1,0 +1,50 @@
+\section{Vedlegg}
+
+\subsection{Oppgave 1}
+\subsubsection{Oppgave 5.1.21}
+Prove the second-order formula for the fourth derivative
+\begin{quote}
+\begin{equation}
+f^{(4)} (x) = \frac{f(x-2h) - 4f(x-h) + 6f(x) - 4f(x+h) + f(x+2h)}{h^4} + O(h^2)
+\end{equation}
+\end{quote}
+Ifølge Taylor's teorem, dersom f er fem ganger kontinuerlig deriverbar, 
+kan vi bruke f(x + h) og f(x -h)
+\begin{quote}
+\begin{equation} \label{eq:f(x+h)}
+f(x+h) = f(x) + hf'(x) + \frac{h^2}{2} f''(x) + \frac{h^3}{6} f'''(x) + \frac{h^4}{24} f^4 (x) + \frac{h^5}{120} f^5 (x) + O(h^6)
+\end{equation}
+\end{quote}
+\begin{quote}
+\begin{equation} \label{eq:f(x-h)}
+f(x-h) = f(x) - hf'(x) + \frac{h^2}{2} f''(x) - \frac{h^3}{6} f'''(x) + \frac{h^4}{24} f^4 (x) - \frac{h^5}{120} f^5 (x) + O(h^6)
+\end{equation}
+\end{quote}
+Legger så sammen f(x+h) + f(x-h) for å eliminere odde-talls deriverte:
+
+\begin{multline} \label{eq:f(x+h)+f(x-h)}
+f(x+h) + f(x-h) = \\f(x) + hf'(x) + \frac{h^2}{2} f''(x) + \frac{h^3}{6} f'''(x) + \frac{h^4}{24} f^4 (x) + \frac{h^5}{120} f^5 (x) + O(h^6) +\\
+ f(x) - hf'(x) + x\frac{h^2}{2} f''(x) - \frac{h^3}{6} f'''(x) + \frac{h^4}{24} f^4 (x) - \frac{h^5}{120} f^5 (x) + O(h^6) \\ = 2f(x) + h^2 f''(x) + \frac{h^4}{12} f^{(4)} (x) + O (h^6)
+\end{multline}
+I følge Taylor's teorem, dersom f er fem ganger kontinuerlig deriverbar, kan vi bruke f(x+2h) og f(x-2h). \\
+Legger så sammen f(x+2h) + f(x-2h) for å eliminere oddetalls-deriverte. \\
+Siden vi allerede har regnet ut f(x+h) + f(x-h), setter vi inn for f(x+2h) og f(x-2h) og får:
+\begin{equation} \label{eq:f(x+2h)+f(x-2h)}
+f(x+2h) + f(x-2h) = 2f(x) + 2h^2 f(x) + \frac{4h^4}{3} f^4 (x) + O (h^6)
+\end{equation}
+For å få den fjerde-deriverte aleine, må vi eliminere den andre-deriverte. Dette gjøres ved å gange inn 4 i den første likningen (\ref{eq:f(x+h)+f(x-h)}) og trekker fra likning (\ref{eq:f(x+2h)+f(x-2h)}): 
+
+\begin{multline*}
+4 * (f(x+h) + f(x-h)) = 8f(x) + 4h^2 f''(x) + \frac{4h^4}{12} f^4 + 4O(h^6) \\
+\Downarrow
+\\
+4f(x+h) + 4f(x-h) - (f(x+2h) + f(x-2h)) = \\ 
+8f(x) + 4h^2 f''(x) + \frac{4h^4}{12} f^4 (x) + 4O(h^6) - \\
+2f(x) + 2h^2 f(x) + \frac{4h^4}{3} f^4 (x) + O (h^6) \\
+= 6f(x) - h^4 f^4 (x) + 3O (h^6)
+\end{multline*}
+Snur litt om på likningen og får at:
+\begin{multline}
+h^4 f^4 = -4f(x+h) - 4f(x-h) + f(x-2h) + f(x-2h) + 6f(x) + 3O(h^6)\\
+\Rightarrow f^4 (x) = \frac{f(x-2h) - 4f(x-h) + 6f(x) - 4f(x+h) + f(x+2h)}{h^4} + O(h^2)
+\end{multline}
