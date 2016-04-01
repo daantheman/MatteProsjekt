@@ -107,155 +107,6 @@ Siden f(x) = f'(x) = 0 ender vi med:
 O(h^2) + O(h^2) = O(h^2)
 \end{equation*}
 
-<<<<<<< HEAD
-\subsection{Oppgave 6}
-\subsubsection{Oppgave 6a}
-Vi legger til en funksjon i Euler-likningen
-\begin{quote}
-$s(x) = -pgsin\frac{\pi}{L} x $
-\end{quote} 
-til kraftdelen til f(x)
-\begin{quote}
-$EIy^{(4)} = f(x) + s(x)$
-\end{quote}
-Skal bevise at
-\begin{quote}
-\begin{equation}
-y(x) = \frac{f}{24EI} x^2 (x^2 - 4Lx + 6L^2) - \frac{gpL}{EI\pi} (\frac{L^3}{\pi^3} sin\frac{\pi}{L}x - \frac{x^3}{6} + \frac{Lx^2}{2} - \frac{L^2 x}{\pi^2})
-\end{equation}
-\end{quote}
-tilfredstiller Euler-Bernoullie likningen og randbetingelsene for en bjelke som er fast i den ene enden og fri i den andre\\
-$y(0) = y'(0) = y''(L) = y'''(L) = 0$ \\
-\\
-1. Starter med å bevise at y(0)= 0
-\begin{quote}
-\begin{multline*}
-y(0) = \frac{f}{24EI} 0^2 (0^2 - 4L0 + 6L^2) - \frac{gpL}{EI\pi} (\frac{L^3}{\pi^3} sin\frac{\pi}{L}x - \frac{0^3}{6} + \frac{L0^2}{2} - \frac{L^2 0}{\pi^2}) \\
-y(0) = 0 - \frac{gpL}{EI\pi} (\frac{L^3}{\pi^3} sin (0) - 0 + 0 - 0 ) \\
-y(0) = 0
-\end{multline*}
-\end{quote}
-Første kriterie er oppfylt.
-\\
-2. Skal nå bevise kriterie 2, at y'(0) = 0, starter med å finne den deriverte.
-\begin{quote}
-\begin{multline}
-y'(x) = \frac{d}{dx} [\frac{fx^2(x^2-4Lx+6L^2)}{24EI} - \frac{gpL}{EI\pi} (\frac{L^3}{\pi^3} sin \frac{\pi}{L}x - \frac{x^3}{6} + \frac{Lx^2}{2} - \frac{L^2x}{\pi^2})]
-\end{multline}
-\end{quote}
-
-\begin{quote}
-\begin{multline*}
-y'(x) = \frac{fx(x^2-3Lx+3L^2)}{6EI} - \frac{gpL}{EI\pi}*\frac{d}{dx} (\frac{L^3}{\pi^3} sin \frac{\pi}{L}x - \frac{x^3}{6} + \frac{Lx^2}{2} - \frac{L^2x}{\pi^2})
-\end{multline*}
-\end{quote}
-
-\begin{quote}
-\begin{multline*}
-y'(x) = \frac{fx(x^2-3Lx+3L^2)}{6EI} - \frac{gpL}{EI\pi} (\frac{L^2}{\pi^2} cos(\frac{\pi}{L}x) - \frac{x^2}{2} + Lx - \frac{L^2}{\pi^2})
-\end{multline*}
-\end{quote}
-Sjekker om y'(0) = 0
-\begin{quote}
-\begin{multline*}
-y'(0) = \frac{f0(0^2-3L0+3L^2)}{6EI} - \frac{gpL}{EI\pi} (\frac{L^2}{\pi^2} cos(\frac{\pi}{L}0) - \frac{0^2}{2} + L0 - \frac{L^2}{\pi^2})
-\end{multline*}
-\end{quote}
-
-\begin{quote}
-\begin{equation*}
-y'(0) = 0 - \frac{gpL}{EI\pi} (\frac{L^2}{\pi^2} * 1 -\frac{L^2}{\pi^2}) \\
-\end{equation*}
-\end{quote}
-
-\begin{quote}
-\begin{equation*}
-y'(0) = 0 - \frac{gpL}{EI\pi} (0) = 0
-\end{equation*}
-\end{quote}
-Andre kriteriet er oppfylt.
-\\
-3. Skal nå bevise kriteriet 3, y''(L) = 0. Starter med å finne den andre deriverte.
-\begin{quote}
-\begin{multline*}
-y'(x) = \frac{fx(x^2-3Lx+3L^2)}{6EI} - \frac{gpL}{EI\pi} (\frac{L^2}{\pi^2} cos(\frac{\pi}{L}x) - \frac{x^2}{2} + Lx - \frac{L^2}{\pi^2})
-\end{multline*}
-\end{quote}
-Fra oppgave 4a, vet vi at
-\begin{quote}
-\begin{multline*}
-y''(x) = \frac{f(x-L)^2}{2EI} - \frac{gpL}{EI\pi} \frac{d}{dx}(\frac{L^2}{\pi^2} cos(\frac{\pi}{L}x) - \frac{x^2}{2} + Lx - \frac{L^2}{\pi^2})
-\end{multline*}
-\end{quote}
-
-\begin{quote}
-\begin{multline}
-y''(x) = \frac{f(x-L)^2}{2EI} - \frac{gpL}{EI\pi}* [\frac{L}{\pi} (-sin(\frac{\pi}{L}x)) - x + L]
-\end{multline}
-\end{quote}
-Sjekker nå om y''(L)=0
-\begin{quote}
-\begin{multline}
-y''(L) = \frac{f(L-L)^2}{2EI} - \frac{gpL}{EI\pi}* [\frac{L}{\pi} (-sin(\frac{\pi}{L}L)) - L + L]
-\end{multline}
-\end{quote}
-
-\begin{quote}
-\begin{equation*}
-y''(L) = 0 - \frac{gpL}{EI\pi}* [\frac{L}{\pi} (-sin(\pi)) ]
-\end{equation*}
-\end{quote}
-
-\begin{quote}
-\begin{equation*}
-y''(L) = 0 - \frac{gpL}{EI\pi}* [\frac{L}{\pi} (0) ]
-\end{equation*}
-\end{quote}
-
-\begin{quote}
-\begin{equation*}
-y''(L) = 0 - 0 = 0
-\end{equation*}
-\end{quote}
-Tredje kriteriet stemmer da y''(L) = 0.
-4. Skal nå bevise at fjerde kriteriet, y'''(L) = 0, og starter med å finne den tredje deriverte
-\begin{quote}
-\begin{multline*}
-y''(x) = \frac{f(x-L)^2}{2EI} - \frac{gpL}{EI\pi}(\frac{L^2}{\pi^2} cos(\frac{\pi}{L}x) - \frac{x^2}{2} + Lx - \frac{L^2}{\pi^2})
-\end{multline*}
-\end{quote}
-
-\begin{quote}
-\begin{multline*}
-y'''(x) = \frac{f(x-L)^2}{2EI} - \frac{gpL}{EI\pi} \frac{d}{dx}(\frac{L^2}{\pi^2} cos(\frac{\pi}{L}x) - \frac{x^2}{2} + Lx - \frac{L^2}{\pi^2})
-\end{multline*}
-\end{quote}
-
-\begin{quote}
-\begin{equation}
-y'''(x) = \frac{f(x-L)}{EI} - \frac{gpL}{EI\pi} (-cos(\frac{\pi}{L}x) - 1)
-\end{equation}
-\end{quote}
-Sjekker så tredje kriteriet, y'''(L) = 0
-\begin{quote}
-\begin{equation*}
-y'''(L) = \frac{f(L-L)}{EI} - \frac{gpL}{EI\pi} (-cos(\frac{\pi}{L}L) - 1)
-\end{equation*}
-\end{quote}
-
-\begin{quote}
-\begin{equation*}
-y'''(L) = 0 - \frac{gpL}{EI\pi} (1 - 1)
-\end{equation*}
-\end{quote}
-
-\begin{quote}
-\begin{equation*}
-y'''(L) = 0 - \frac{gpL}{EI\pi} 0 = 0
-\end{equation*}
-\end{quote}
-Fjerde kriteriet stemmer fordi y'''(L) = 0.
-=======
 \subsection{Oppgave 2}
 
 lagA.m
@@ -435,6 +286,151 @@ Deriverer m.h.p x og $\frac{f}{EI}$ er en konstant.
 y^{(6)}(x) = \frac{d}{dx}[0] = 0
 \end{equation}
 Slik har vi vist at $y^{(6)}(c) = 0$.
-=======
->>>>>>> origin/master
->>>>>>> origin/master
+
+\subsection{Oppgave 6}
+\subsubsection{Oppgave 6a}
+Vi legger til en funksjon i Euler-likningen
+\begin{quote}
+$s(x) = -pgsin\frac{\pi}{L} x $
+\end{quote} 
+til kraftdelen til f(x)
+\begin{quote}
+$EIy^{(4)} = f(x) + s(x)$
+\end{quote}
+Skal bevise at
+\begin{quote}
+\begin{equation}
+y(x) = \frac{f}{24EI} x^2 (x^2 - 4Lx + 6L^2) - \frac{gpL}{EI\pi} (\frac{L^3}{\pi^3} sin\frac{\pi}{L}x - \frac{x^3}{6} + \frac{Lx^2}{2} - \frac{L^2 x}{\pi^2})
+\end{equation}
+\end{quote}
+tilfredstiller Euler-Bernoullie likningen og randbetingelsene for en bjelke som er fast i den ene enden og fri i den andre\\
+$y(0) = y'(0) = y''(L) = y'''(L) = 0$ \\
+\\
+1. Starter med å bevise at y(0)= 0
+\begin{quote}
+\begin{multline*}
+y(0) = \frac{f}{24EI} 0^2 (0^2 - 4L0 + 6L^2) - \frac{gpL}{EI\pi} (\frac{L^3}{\pi^3} sin\frac{\pi}{L}x - \frac{0^3}{6} + \frac{L0^2}{2} - \frac{L^2 0}{\pi^2}) \\
+y(0) = 0 - \frac{gpL}{EI\pi} (\frac{L^3}{\pi^3} sin (0) - 0 + 0 - 0 ) \\
+y(0) = 0
+\end{multline*}
+\end{quote}
+Første kriterie er oppfylt.
+\\
+2. Skal nå bevise kriterie 2, at y'(0) = 0, starter med å finne den deriverte.
+\begin{quote}
+\begin{multline}
+y'(x) = \frac{d}{dx} [\frac{fx^2(x^2-4Lx+6L^2)}{24EI} - \frac{gpL}{EI\pi} (\frac{L^3}{\pi^3} sin \frac{\pi}{L}x - \frac{x^3}{6} + \frac{Lx^2}{2} - \frac{L^2x}{\pi^2})]
+\end{multline}
+\end{quote}
+
+\begin{quote}
+\begin{multline*}
+y'(x) = \frac{fx(x^2-3Lx+3L^2)}{6EI} - \frac{gpL}{EI\pi}*\frac{d}{dx} (\frac{L^3}{\pi^3} sin \frac{\pi}{L}x - \frac{x^3}{6} + \frac{Lx^2}{2} - \frac{L^2x}{\pi^2})
+\end{multline*}
+\end{quote}
+
+\begin{quote}
+\begin{multline*}
+y'(x) = \frac{fx(x^2-3Lx+3L^2)}{6EI} - \frac{gpL}{EI\pi} (\frac{L^2}{\pi^2} cos(\frac{\pi}{L}x) - \frac{x^2}{2} + Lx - \frac{L^2}{\pi^2})
+\end{multline*}
+\end{quote}
+Sjekker om y'(0) = 0
+\begin{quote}
+\begin{multline*}
+y'(0) = \frac{f0(0^2-3L0+3L^2)}{6EI} - \frac{gpL}{EI\pi} (\frac{L^2}{\pi^2} cos(\frac{\pi}{L}0) - \frac{0^2}{2} + L0 - \frac{L^2}{\pi^2})
+\end{multline*}
+\end{quote}
+
+\begin{quote}
+\begin{equation*}
+y'(0) = 0 - \frac{gpL}{EI\pi} (\frac{L^2}{\pi^2} * 1 -\frac{L^2}{\pi^2}) \\
+\end{equation*}
+\end{quote}
+
+\begin{quote}
+\begin{equation*}
+y'(0) = 0 - \frac{gpL}{EI\pi} (0) = 0
+\end{equation*}
+\end{quote}
+Andre kriteriet er oppfylt.
+\\
+3. Skal nå bevise kriteriet 3, y''(L) = 0. Starter med å finne den andre deriverte.
+\begin{quote}
+\begin{multline*}
+y'(x) = \frac{fx(x^2-3Lx+3L^2)}{6EI} - \frac{gpL}{EI\pi} (\frac{L^2}{\pi^2} cos(\frac{\pi}{L}x) - \frac{x^2}{2} + Lx - \frac{L^2}{\pi^2})
+\end{multline*}
+\end{quote}
+Fra oppgave 4a, vet vi at
+\begin{quote}
+\begin{multline*}
+y''(x) = \frac{f(x-L)^2}{2EI} - \frac{gpL}{EI\pi} \frac{d}{dx}(\frac{L^2}{\pi^2} cos(\frac{\pi}{L}x) - \frac{x^2}{2} + Lx - \frac{L^2}{\pi^2})
+\end{multline*}
+\end{quote}
+
+\begin{quote}
+\begin{multline}
+y''(x) = \frac{f(x-L)^2}{2EI} - \frac{gpL}{EI\pi}* [\frac{L}{\pi} (-sin(\frac{\pi}{L}x)) - x + L]
+\end{multline}
+\end{quote}
+Sjekker nå om y''(L)=0
+\begin{quote}
+\begin{multline}
+y''(L) = \frac{f(L-L)^2}{2EI} - \frac{gpL}{EI\pi}* [\frac{L}{\pi} (-sin(\frac{\pi}{L}L)) - L + L]
+\end{multline}
+\end{quote}
+
+\begin{quote}
+\begin{equation*}
+y''(L) = 0 - \frac{gpL}{EI\pi}* [\frac{L}{\pi} (-sin(\pi)) ]
+\end{equation*}
+\end{quote}
+
+\begin{quote}
+\begin{equation*}
+y''(L) = 0 - \frac{gpL}{EI\pi}* [\frac{L}{\pi} (0) ]
+\end{equation*}
+\end{quote}
+
+\begin{quote}
+\begin{equation*}
+y''(L) = 0 - 0 = 0
+\end{equation*}
+\end{quote}
+Tredje kriteriet stemmer da y''(L) = 0.
+4. Skal nå bevise at fjerde kriteriet, y'''(L) = 0, og starter med å finne den tredje deriverte
+\begin{quote}
+\begin{multline*}
+y''(x) = \frac{f(x-L)^2}{2EI} - \frac{gpL}{EI\pi}(\frac{L^2}{\pi^2} cos(\frac{\pi}{L}x) - \frac{x^2}{2} + Lx - \frac{L^2}{\pi^2})
+\end{multline*}
+\end{quote}
+
+\begin{quote}
+\begin{multline*}
+y'''(x) = \frac{f(x-L)^2}{2EI} - \frac{gpL}{EI\pi} \frac{d}{dx}(\frac{L^2}{\pi^2} cos(\frac{\pi}{L}x) - \frac{x^2}{2} + Lx - \frac{L^2}{\pi^2})
+\end{multline*}
+\end{quote}
+
+\begin{quote}
+\begin{equation}
+y'''(x) = \frac{f(x-L)}{EI} - \frac{gpL}{EI\pi} (-cos(\frac{\pi}{L}x) - 1)
+\end{equation}
+\end{quote}
+Sjekker så tredje kriteriet, y'''(L) = 0
+\begin{quote}
+\begin{equation*}
+y'''(L) = \frac{f(L-L)}{EI} - \frac{gpL}{EI\pi} (-cos(\frac{\pi}{L}L) - 1)
+\end{equation*}
+\end{quote}
+
+\begin{quote}
+\begin{equation*}
+y'''(L) = 0 - \frac{gpL}{EI\pi} (1 - 1)
+\end{equation*}
+\end{quote}
+
+\begin{quote}
+\begin{equation*}
+y'''(L) = 0 - \frac{gpL}{EI\pi} 0 = 0
+\end{equation*}
+\end{quote}
+Fjerde kriteriet stemmer fordi y'''(L) = 0.
