@@ -60,7 +60,7 @@ f^{(4)} (x + h) - \frac{16f(x + h) - 9f(x + 2h) + \frac{8}{3}f(x + 3h) - \frac{1
 Starter med å bevise at dersom f(x) = f'(x) = 0, så er
 \begin{quote}
 \begin{equation}
-f(x + h) = 10f(x+h) + 5f(x + 2h) - \frac{5}{3}f(x + 3h) - \frac{1}{4}(x+4h) = O(h^6)
+f(x + h) - 10f(x+h) + 5f(x + 2h) - \frac{5}{3}f(x + 3h) - \frac{1}{4}(x+4h) = O(h^6)
 \end{equation}
 \end{quote}
 Fra oppgave 1, 5.1.21 har vi (\ref{eq:oppgave1}), vi begynner med å skrive denne om til f(x+h) og får:
@@ -170,7 +170,6 @@ n = 10;
 disp('Numerisk losning')
 y = ebbeam(E,L,d,D,w,n)
 \end{lstlisting}
-<<<<<<< HEAD
 
 \subsection{Oppgave 4}
 \subsubsection{Oppgave 4a}
