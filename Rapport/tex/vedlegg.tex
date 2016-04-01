@@ -185,67 +185,48 @@ er oppfylt av y(x), som er den vertikale forskyvningen av en L meter lang bjelke
 y(x)=(f/24EI)*x^2*(x^2-4Lx+6L^2)
 \end{equation}
 \end{quote}
-Skal nå vise at y(x) er den korrekte løsningen ved å derivere den fire ganger og sette inn i Euler-Bernouillilikningen. Begynner med å finne den deriverte med hensyn på x. Vi behandler EI og L som konstanter.
+Skal nå vise at y(x) er den korrekte løsningen ved å derivere den fire ganger og sette inn i Euler-Bernouillilikningen. Begynner med å finne den deriverte med hensyn på x. Vi behandler f/EI og L som konstanter.
+
+Begynner med å finne den deriverte:
 \begin{quote}
 \begin{equation*}
-y=\frac{fx^2(x^2-4Lx+6L^2)}{24EI}=
+y=(f/24EI)(x^4-4Lx^3+6L^2x^2)=
 \end{equation*}
 \begin{equation*}
-y'=\frac{d}{dx}[\frac{fx^2(x^2-4Lx+6L^2)}{24EI}]=
+y'=\frac{d}{dx}[(f/24EI)]\frac{d}{dx}[x^4-4Lx^3+6L^2x^2]=
 \end{equation*}
 \begin{equation*}
-y'=\frac{\frac{d}{dx}[fx^2(x^2-4Lx+6L^2)]}{24EI}=
-\end{equation*}
-\begin{equation*}
-y'=\frac{f(\frac{d}{dx}[x^2]*(x^2-4Lx+6L^2) + x^2*\frac{d}{dx}[x^2-4Lx+6L^2])}{24EI}=
-\end{equation*}
-\begin{equation*}
-y'=\frac{f2x(x^2-4Lx+6L^2)}{24EI}+\frac{fx^2(2x-4L)}{24EI}=
-\end{equation*}
-\begin{equation*}
-y'=\frac{fx(x^2-4Lx+6L^2)}{12EI}+\frac{fx(x^2-2Lx)}{12EI}=
-\end{equation*}
-\begin{equation*}
-y'=\frac{fx(x^2-3Lx+3L^2)}{6EI}
+y'=(f/24EI)(4x^3-12Lx^2+12L^2x)=
 \end{equation*}
 \end{quote}
-Her er den derivert en gang, fortsetter med å finne den andrederiverte;
+Her er den derivert en gang, fortsetter med å finne den andrederiverte:
 \begin{quote}
 \begin{equation*}
-y''=\frac{d}{dx}[\frac{fx(x^2-3Lx+3L^2)}{6EI}]=
+y''=\frac{d}{dx}[(f/24EI)]\frac{d}{dx}[4x^3-12Lx^2+12L^2x]=
 \end{equation*}
 \begin{equation*}
-y''=\frac{f( \frac{d}{dx}[x](x^2-3Lx+3L^2) + x\frac{d}{dx}[x^2-3Lx+3L^2] )}{6EI}=
-\end{equation*}
-\begin{equation*}
-y''=\frac{f(x^2-3Lx+3L^2) + f(2x^2-3Lx)}{6EI}=
-\end{equation*}
-\begin{equation*}
-y''=\frac{f(x^2-2Lx+L^2)}{2EI}=
-\end{equation*}
-\begin{equation*}
-y''=\frac{f(x-L)^2}{2EI}
+y''=(f/24EI)(12x^2-24Lx+12L^2)=
 \end{equation*}
 \end{quote}
 Her har vi funnet den andrederiverte, fortsetter med å finne den tredjederiverte;
 \begin{quote}
 \begin{equation*}
-y'''=\frac{d}{dx}[\frac{f(x-L)^2}{2EI}]=
+y'''=\frac{d}{dx}[(f/24EI)]\frac{d}{dx}[12x^2-24Lx+12L^2]=
 \end{equation*}
 \begin{equation*}
-y'''=\frac{f*\frac{d}{dx}[(x-L)^2]}{2EI}=
-\end{equation*}
-\begin{equation*}
-y'''=\frac{f(x-L)}{EI}
+y'''=(f/24EI)(24x-24L+0)=
 \end{equation*}
 \end{quote}
 Her har vi funnet den tredjederiverte, fortsetter med å finne den fjerdederiverte;
 \begin{quote}
 \begin{equation*}
-y''''=\frac{d}{dx}[\frac{f(x-L)}{EI}]=
+y''''=\frac{d}{dx}[(f/24EI)]\frac{d}{dx}[24x-24L]=
 \end{equation*}
 \begin{equation*}
-y''''=\frac{f*\frac{d}{dx}[(x-L)]}{EI}=
+y''''=(f/24EI)(24)=
+\end{equation*}
+\begin{equation*}
+y''''=\frac{24f}{24EI}
 \end{equation*}
 \begin{equation*}
 y''''=\frac{f}{EI}
