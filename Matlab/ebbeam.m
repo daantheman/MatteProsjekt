@@ -13,6 +13,5 @@ g = 9.81;
 b = repmat(-D*w*d*g , n,1) * h^4/(E*I);
 
 A = lagA(n);
-
 y = A\b;
 end
