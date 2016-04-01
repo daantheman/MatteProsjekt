@@ -107,6 +107,7 @@ Siden f(x) = f'(x) = 0 ender vi med:
 O(h^2) + O(h^2) = O(h^2)
 \end{equation*}
 
+<<<<<<< HEAD
 \subsection{Oppgave 6}
 \subsubsection{Oppgave 6a}
 Vi legger til en funksjon i Euler-likningen
@@ -254,3 +255,68 @@ y'''(L) = 0 - \frac{gpL}{EI\pi} 0 = 0
 \end{equation*}
 \end{quote}
 Fjerde kriteriet stemmer fordi y'''(L) = 0.
+=======
+\subsection{Oppgave 2}
+
+lagA.m
+\begin{lstlisting}
+function A = lagA(n)
+
+e = ones(n,1);
+A = spdiags(e*[1 -4 6 -4 1],-2:2,n,n);
+
+A(1,1:4) = [16 -9 8/3 -1/4];
+A(n-1,n-3:n) = [16/17 -60/17 72/17 -28/17];
+A(n,n-3:n)= [-12/17 96/17 -156/17 72/17];
+
+end
+\end{lstlisting}
+
+Scriptet for å kjøre koden:
+\begin{lstlisting}
+disp('Oppave 2')
+
+A = lagA(10);
+full(A)
+\end{lstlisting}
+
+\subsection{Oppgave 3}
+
+ebbeam.m
+\\
+Kan sende med A i fra forrige oppgave, men velger å lage A på nytt slik at dette kan kjøres som et eget skript.
+\begin{lstlisting}
+% Input:
+% E = young's modulus for a meterial
+% L = length
+% d = diameter
+% g = gravity
+% w = width
+% D = density
+function y = ebbeam(E,L,d,D,w,n)
+
+I = w*d^3/12;
+h = L/n;
+g = 9.81;
+b = repmat(-D*w*d*g , n,1) * h^4/(E*I);
+
+A = lagA(n);
+
+y = A\b;
+end
+\end{lstlisting}
+Scriptet for å kjøre koden:
+\begin{lstlisting}
+disp('Oppgave 3')
+format long;
+E = 1.3e10;
+D = 480;
+w = 0.3;
+L = 2;
+d = 0.03;
+n = 10;
+
+disp('Numerisk losning')
+y = ebbeam(E,L,d,D,w,n)
+\end{lstlisting}
+>>>>>>> origin/master
