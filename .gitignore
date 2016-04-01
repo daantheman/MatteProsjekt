@@ -1,0 +1,14 @@
+
+*.out
+
+*.aux
+
+*.log
+
+*.out
+
+*.toc
+
+*.gz
+
+Rapport/Sluttrapport.pdf

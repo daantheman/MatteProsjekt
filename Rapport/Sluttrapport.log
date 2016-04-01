@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.9)  1 APR 2016 12:10
+=======
+<<<<<<< HEAD
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.9)  1 APR 2016 12:22
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.9)  11 MAR 2016 15:04
+>>>>>>> origin/master
+>>>>>>> origin/master
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -926,6 +934,78 @@ LaTeX Font Info:    Font shape `U/zeuex/m/n' will be
 [5
 
 ] (./tex/referanseliste.tex) [6] (./tex/vedlegg.tex [7] [8]
+<<<<<<< HEAD
+Underfull \hbox (badness 10000) in paragraph at lines 126--130
+
+ []
+
+[9]
+Underfull \hbox (badness 4316) detected at line 155
+ []$[]  \U/zeur/m/n/12 y[]\U/zeus/m/n/12 ¨\U/zeur/m/n/12 x\U/zeus/m/n/12 © ½ []
+ ^^@ []¨[]\U/zeur/m/n/12 cos\U/zeus/m/n/12 ¨[]\U/zeur/m/n/12 x\U/zeus/m/n/12 © 
+^^@ [] « \U/zeur/m/n/12 Lx \U/zeus/m/n/12 ^^@ []©  $ 
+ []
+
+
+Underfull \hbox (badness 4792) detected at line 161
+ []$[]  \U/zeur/m/n/12 y[]\U/zeus/m/n/12 ¨\U/zeur/m/n/12 0\U/zeus/m/n/12 © ½ []
+ ^^@ []¨[]\U/zeur/m/n/12 cos\U/zeus/m/n/12 ¨[]\U/zeur/m/n/12 0\U/zeus/m/n/12 © 
+^^@ [] « \U/zeur/m/n/12 L0 \U/zeus/m/n/12 ^^@ []©  $ 
+ []
+
+
+Underfull \hbox (badness 4316) detected at line 181
+ []$[]  \U/zeur/m/n/12 y[]\U/zeus/m/n/12 ¨\U/zeur/m/n/12 x\U/zeus/m/n/12 © ½ []
+ ^^@ []¨[]\U/zeur/m/n/12 cos\U/zeus/m/n/12 ¨[]\U/zeur/m/n/12 x\U/zeus/m/n/12 © 
+^^@ [] « \U/zeur/m/n/12 Lx \U/zeus/m/n/12 ^^@ []©  $ 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 187
+ []$[]  \U/zeur/m/n/12 y[]\U/zeus/m/n/12 ¨\U/zeur/m/n/12 x\U/zeus/m/n/12 © ½ []
+ ^^@ [][]¨[]\U/zeur/m/n/12 cos\U/zeus/m/n/12 ¨[]\U/zeur/m/n/12 x\U/zeus/m/n/12 
+© ^^@ [] « \U/zeur/m/n/12 Lx \U/zeus/m/n/12 ^^@ []©  $ 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 193
+ []$[]  \U/zeur/m/n/12 y[]\U/zeus/m/n/12 ¨\U/zeur/m/n/12 x\U/zeus/m/n/12 © ½ []
+ ^^@ [] ^^C Û[]¨^^@\U/zeur/m/n/12 sin\U/zeus/m/n/12 ¨[]\U/zeur/m/n/12 x\U/zeus/
+m/n/12 ©© ^^@ \U/zeur/m/n/12 x \U/zeus/m/n/12 « \U/zeur/m/n/12 L\U/zeus/m/n/12 
+Ý$ [][]  
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 199
+ []$[]  \U/zeur/m/n/12 y[]\U/zeus/m/n/12 ¨\U/zeur/m/n/12 L\U/zeus/m/n/12 © ½ []
+ ^^@ [] ^^C Û[]¨^^@\U/zeur/m/n/12 sin\U/zeus/m/n/12 ¨[]\U/zeur/m/n/12 L\U/zeus/
+m/n/12 ©© ^^@ \U/zeur/m/n/12 L \U/zeus/m/n/12 « \U/zeur/m/n/12 L\U/zeus/m/n/12 
+Ý$ [][]  
+ []
+
+[10]
+Underfull \hbox (badness 10000) detected at line 224
+ []$[]  \U/zeur/m/n/12 y[]\U/zeus/m/n/12 ¨\U/zeur/m/n/12 x\U/zeus/m/n/12 © ½ []
+ ^^@ []¨[]\U/zeur/m/n/12 cos\U/zeus/m/n/12 ¨[]\U/zeur/m/n/12 x\U/zeus/m/n/12 © 
+^^@ [] « \U/zeur/m/n/12 Lx \U/zeus/m/n/12 ^^@ []©  $ 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 230
+ []$[]  \U/zeur/m/n/12 y[]\U/zeus/m/n/12 ¨\U/zeur/m/n/12 x\U/zeus/m/n/12 © ½ []
+ ^^@ [][]¨[]\U/zeur/m/n/12 cos\U/zeus/m/n/12 ¨[]\U/zeur/m/n/12 x\U/zeus/m/n/12 
+© ^^@ [] « \U/zeur/m/n/12 Lx \U/zeus/m/n/12 ^^@ []©  $ 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 236
+ []$[]  \U/zeur/m/n/12 y[]\U/zeus/m/n/12 ¨\U/zeur/m/n/12 x\U/zeus/m/n/12 © ½ []
+ ^^@ []¨^^@\U/zeur/m/n/12 cos\U/zeus/m/n/12 ¨[]\U/zeur/m/n/12 x\U/zeus/m/n/12 ©
+ ^^@ \U/zeur/m/n/12 1\U/zeus/m/n/12 ©$ [][]  
+ []
+
+) [11]
+=======
 LaTeX Font Info:    Try loading font information for T1+pcr on input line 113.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/t1pcr.fd
@@ -943,6 +1023,7 @@ LaTeX Font Info:    Font shape `U/zeus/m/n' will be
 (Font)              scaled to size 4.74998pt on input line 117.
 LaTeX Font Info:    Font shape `U/zeuex/m/n' will be
 (Font)              scaled to size 4.74998pt on input line 117.
+<<<<<<< HEAD
  [9] [10]
 Overfull \hbox (1.32306pt too wide) in paragraph at lines 254--255
 \T1/cmr/m/n/12 Vi har nå fun-net den fjerde-de-ri-ver-te til y(x). Vi kan nå se
@@ -950,6 +1031,10 @@ t-te inn i Euler-Bernouillilikningen;
  []
 
 [11]) [12]
+=======
+ [9]) [10]
+>>>>>>> origin/master
+>>>>>>> origin/master
 No file Sluttrapport.bbl.
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 160.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 160.
@@ -957,7 +1042,42 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 160.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 160.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 160.
 Package rerunfilecheck Info: File `Sluttrapport.out' has not changed.
+<<<<<<< HEAD
 (rerunfilecheck)             Checksum: 02F74CEAF35900E3BE40FB664F9CDDF3;701.
+=======
+<<<<<<< HEAD
+(rerunfilecheck)             Checksum: 4FD28D1E27CA43AE7B4DD46757E20890;513.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 156.
+ ) 
+Here is how much of TeX's memory you used:
+ 9918 strings out of 493089
+ 139587 string characters out of 6134843
+ 252576 words of memory out of 5000000
+ 13180 multiletter control sequences out of 15000+600000
+ 22244 words of font info for 60 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 41i,8n,35p,270b,394s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
+/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></u
+sr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb><
+/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/euler/eufm7.pfb>
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/euler/eurm10.pf
+b></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/euler/eurm7.p
+fb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb
+></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb><
+/usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></u
+sr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr
+/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/l
+ocal/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb>
+Output written on Sluttrapport.pdf (11 pages, 136237 bytes).
+PDF statistics:
+ 176 PDF objects out of 1000 (max. 8388607)
+ 149 compressed objects within 2 object streams
+ 36 named destinations out of 1000 (max. 500000)
+=======
+(rerunfilecheck)             Checksum: 283858D1342CA902A49FA96675FFFE16;502.
+>>>>>>> origin/master
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 160.
  ) 
 Here is how much of TeX's memory you used:
@@ -985,8 +1105,16 @@ e/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/
 /texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
 Output written on Sluttrapport.pdf (12 pages, 154683 bytes).
 PDF statistics:
+<<<<<<< HEAD
  260 PDF objects out of 1000 (max. 8388607)
  230 compressed objects within 3 object streams
  87 named destinations out of 1000 (max. 500000)
  97 words of extra memory for PDF output out of 10000 (max. 10000000)
+=======
+ 230 PDF objects out of 1000 (max. 8388607)
+ 202 compressed objects within 3 object streams
+ 77 named destinations out of 1000 (max. 500000)
+>>>>>>> origin/master
+ 73 words of extra memory for PDF output out of 10000 (max. 10000000)
+>>>>>>> origin/master
 
