@@ -1,5 +1,5 @@
 format long;
-[E, I, D, d, w, f, g, L] = hentKonstanter();
+[E, I, D, d, w, f, g, L, p] = hentKonstanter();
 n = 10;
 
 i_max = 11;
@@ -10,7 +10,7 @@ y_actual_L = zeros(i_max, 1);
 error = zeros(i_max,1);
 cond_A = zeros(i_max,1);
 
-syms y(x);
+syms y(x) y(z);
 y(x) = correct_y(f,E,I,L,x);
 
 for i = (1:i_max)
@@ -28,6 +28,6 @@ disp(T);
 figure;
 subplot(2,1,1);
 plot(log(n), log(error));
-title('Shit');
+title('Error figure');
 subplot(2,1,2);
 plot(log(cond_A));

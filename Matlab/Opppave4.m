@@ -18,3 +18,8 @@ B = transpose(v);
 
 C = A*B;
 full(C)
+
+disp('Sammenligner svaret fra oppgave 3')
+b = ebbeam(E,L,d,D,w,10)
+
+T = table(B, b)

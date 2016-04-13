@@ -5,12 +5,13 @@
 % g = gravity
 % w = width
 % D = density
-function y = ebbeam(E,L,d,D,w,n)
+function y = ebbeam(n)
 
-I = w*d^3/12;
+[E, I, D, d, w, f, g, L, p] = hentKonstanter()
 h = L/n;
-g = 9.81;
-b = repmat(-D*w*d*g , n,1) * h^4/(E*I);
+
+%legg til sinusformel
+b = repmat(f, n, 1) * h^4/(E*I);
 
 A = lagA(n);
 y = A\b;
