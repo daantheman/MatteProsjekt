@@ -15,7 +15,7 @@ y(x) = correct_y(f,E,I,L,x);
 
 for i = (1:i_max)
     n(i) = 10*2^i;
-    y_num = ebbeam(E,L,d,D,w,n(i));
+    y_num = ebbeam(L,n(i),f,E,I);
     y_num_L(i) = y_num(n(i));
     y_actual_L(i) = y(L);
     error(i) = abs(y_actual_L(i) - y_num(n(i)));
@@ -28,6 +28,6 @@ disp(T);
 figure;
 subplot(2,1,1);
 plot(log(n), log(error));
-title('Error figure');
+title('Error figure - Oppgave 5');
 subplot(2,1,2);
 plot(log(cond_A));

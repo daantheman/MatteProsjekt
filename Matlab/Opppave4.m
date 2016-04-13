@@ -20,6 +20,6 @@ C = A*B;
 full(C)
 
 disp('Sammenligner svaret fra oppgave 3')
-b = ebbeam(E,L,d,D,w,10)
+b = ebbeam(L,10,f,E,I)
 
 T = table(B, b)

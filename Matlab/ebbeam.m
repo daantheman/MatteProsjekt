@@ -5,9 +5,8 @@
 % g = gravity
 % w = width
 % D = density
-function y = ebbeam(n)
+function y = ebbeam(L,n,f,E,I)
 
-[E, I, D, d, w, f, g, L, p] = hentKonstanter()
 h = L/n;
 
 %legg til sinusformel
