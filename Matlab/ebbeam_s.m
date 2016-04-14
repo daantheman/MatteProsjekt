@@ -1,8 +1,12 @@
-function y = ebbeam_s(L,n,D,w,d,g,p,E,I,x)
+function y = ebbeam_s(L,n,f,E,I,p,g)
 
 h = L/n;
-%legg til sinusformel
-b = repmat(-D*w*d*g+sin_x(x,p,g,L), n, 1) * h^4/(E*I);
+
+x = sin_x((h:h:L),p,g,L)';
+
+b = repmat(f, n, 1);
+b = b + x;
+b = b * ((h^4/(E*I)));
 
 A = lagA(n);
 y = A\b;
