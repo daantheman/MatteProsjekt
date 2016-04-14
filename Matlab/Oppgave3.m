@@ -5,4 +5,4 @@ format long;
 n = 10;
 
 disp('Numerisk losning')
-y = ebbeam(L,n,f,E,I)
+yc = ebbeam(L,n,f,E,I)
