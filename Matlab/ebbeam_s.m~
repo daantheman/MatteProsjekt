@@ -1,0 +1,14 @@
+function y = ebbeam_s(L,n,f,E,I)
+
+h = L/n
+x = sin_x((h:h:L),p,g,L);
+x = transpose(x);
+%legg til sinusformel
+b = repmat(f, n, 1);
+b = b + x;
+b = b * ((h^4/(E*I)));
+
+A = lagA(n);
+y = A\b;
+
+end

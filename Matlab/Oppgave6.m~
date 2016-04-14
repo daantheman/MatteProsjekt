@@ -14,16 +14,15 @@ actual = zeros(i_max, 1);
 error = zeros(i_max,1);
 cond_A = zeros(i_max,1);
 
-syms y(x) ;
+syms y(x) y(z);
 y(x) = correct_y_sin(f, E, I, L, p, g, x);
-
+z(x) = ebbeam_s(L,x,f,E,I);
 
 for i = (1:i_max)
     n(i) = 10*2^i;
-    y_num = ebbeam_s(L,n(i),f,E,I,p,g);
-    numeric(i) = y_num(n(i));
+    numeric(i) = n(i);
     actual(i) = y(L);
-    error(i) = abs(actual(i) - numeric(i));
+    error(i) = abs(actual(i) - y_num(n(i)));
     A = lagA(n(i));
     cond_A(i) = condest(A);
 end
@@ -44,4 +43,4 @@ hold on;
 h_sq = ((ones(i_max, 1))*(L^2)) ./ (n.^2);
 disp(h_sq);
 plot(n, h_sq, '--');
-title('Error, Theoretical Error and Condition Number');
+title('Oppgave 6');
