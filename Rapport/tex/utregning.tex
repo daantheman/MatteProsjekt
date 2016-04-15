@@ -181,7 +181,7 @@ EIy'''' = f(x)
 \end{quote}
 er oppfylt av y(x), som er den vertikale forskyvningen av en L meter lang bjelke. Den korrekte løsningen av likningen med konstanten f(x) = f er;
 \begin{quote}
-\begin{equation}
+\begin{equation}\label{eq:oppgave4}
 y(x)=(f/24EI) x^2 (x^2-4Lx+6L^2)
 \end{equation}
 \end{quote}
@@ -268,7 +268,7 @@ y^{(6)}(x) = \frac{d}{dx}[0] = 0
 Slik har vi vist at $y^{(6)}(c) = 0$.
 
 \subsubsection{Oppgave 4c}
-Bruker her MATLAB til å regne ut den korrekte løsningen $y_e = [y(0.2)\;\;y(0.4)\;\;y(0.6)\;\;...\;\;y(2.0)]^T$ Regner så ut den numerisk fjerdederiverte av $y(x)$ ved hjelp av $Diff_4(y)= Ay$. Her er MATLAB-koden:
+Bruker her MATLAB til å regne ut den korrekte løsningen $y_e = [y(0.2) y(0.4) y(0.6) ... y(2.0)]$ 
 \begin{lstlisting}
 disp('Oppgave 4c')
 [E, I, D, d, w, f, g, L] = hentKonstanter();
@@ -288,156 +288,78 @@ disp('Regner ut C = Ay (A-matrisen er laget med lagA(10) fra oppgave 2)')
 A = lagA(10);
 C = A*ye
 \end{lstlisting}
-Resultatet av denne koden blir som følger:
+\subsubsection{Oppgave 5}
+Vi starter her med å hente inn konstantene vi fikk oppgitt i boken, deretter har vi definert at $n=10(2^{i})$ som oppgitt i oppgaven og bruker ebbeam-funksjonen som er 
+Euler-Bernoulli sin metode for å beregne hvor mye materialet bøyer seg under press. 
+Vi beregner den numeriske løsningen ved hjelp av ebbeam-funksjonen, den faktiske løsningen, feilen og kondisjonstallet. 
 \begin{lstlisting}
-Oppgave 4c
+format long;
+[E, I, D, d, w, f, g, L, p] = hentKonstanter();
+n = 10;
 
-ye =
+i_max = 11;
 
-    -1.806247384615386e-04
-    -6.748475076923080e-04
-    -1.416986584615385e-03
-    -2.349087507692309e-03
-    -3.420923076923078e-03
-    -4.589993353846155e-03
-    -5.821525661538464e-03
-    -7.088474584615388e-03
-    -8.371521969230772e-03
-    -9.659076923076925e-03
+n = zeros(i_max, 1);
+y_num_L = zeros(i_max, 1);
+y_actual_L = zeros(i_max, 1);
+error = zeros(i_max,1);
+cond_A = zeros(i_max,1);
 
-Regner ut C = Ay (A-matrisen er laget med lagA(10) fra oppgave 2)
+syms y(x) y(z);
+y(x) = correct_y(f,E,I,L,x);
 
-C =
+for i = (1:i_max)
+    n(i) = 10*2^i;
+    y_num = ebbeam(L,n(i),f,E,I);
+    y_num_L(i) = y_num(n(i));
+    y_actual_L(i) = y(L);
+    error(i) = abs(y_actual_L(i) - y_num(n(i)));
+    A = lagA(n(i));
+    cond_A(i) = condest(A);
+end
 
-    -7.727261538461477e-06
-    -7.727261538462236e-06
-    -7.727261538458333e-06
-    -7.727261538467874e-06
-    -7.727261538454863e-06
-    -7.727261538463537e-06
-    -7.727261538460067e-06
-    -7.727261538465272e-06
-    -7.727261538463537e-06
-    -7.727261538463537e-06
+T = table(n, y_num_L, y_actual_L, error, cond_A);
+disp(T);
+figure;
+plot(log(n), log(error));
+hold on;
+plot(log(n), log(cond_A));
+title('Error figure and Condition Number - Oppgave 5');
 \end{lstlisting}
 
-\subsubsection{Oppgave 4d}
-Her skal vi sammenligne svaret fra oppgave 4c med vektoren $b$ fra oppgave 3 og finne foroverfeil og relativ foroverfeil til $Diff_4(y)= Ay$. Etterpå skal vi anta at relativ bakoverfeil er $\epsilon_{mach} = 2^{-52}$, finne feilforstørrelsen og sammenligne den med kondisjonstallet til $A$. Her er MATLAB-koden:
 \begin{lstlisting}
-disp('Oppgave 4d')
-disp('Sammenligner svaret C fra c) med vektoren b fra oppgave 3')
+% Input:
+% E = young's modulus for a meterial
+% L = length
+% d = diameter
+% g = gravity
+% w = width
+% D = density
+function y = ebbeam(L,n,f,E,I)
 
-% Gjenskaper vektoren b fra oppgave 3.
-h = L/10;
-b = repmat(f, 10, 1) * h^4/(E*I);
-table(C, b)
+h = L/n;
 
-% Finner foroverfeil FE ved aa ta ||C - b||
-disp('foroverfeil:')
-FE = max( abs(C-b) )
+%legg til sinusformel
+b = repmat(f, n, 1) * h^4/(E*I);
 
-% Finner relativ foroverfeil rFE ved aa ta ||C - b|| / ||C||
-disp('Relativ foroverfeil:')
-rFE = (FE)/( max( abs(C) ) )
+A = lagA(n);
+y = A\b;
 
-% Antar at relativ bakoverfeil er rBE=2^-52 og regner ut
-% feilforstorrelsen som rFE/rBE, sammenligner med kondisjonstallet til A.
-disp('Feilforstorrelse:')
-rBE = 2^-52;
-rFE/rBE
-disp('Kondisjonstall til A:')
-cond(full(A))
+end
 \end{lstlisting}
-Resultatet av koden blir som følger:
+Her er ebbeam-funksjonen.
+
 \begin{lstlisting}
-Oppgave 4d
-Sammenligner svaret C fra c) med vektoren b fra oppgave 3
-
-ans = 
-
-              C                        b          
-    _____________________    _____________________
-
-    -7.72726153846148e-06    -7.72726153846154e-06
-    -7.72726153846224e-06    -7.72726153846154e-06
-    -7.72726153845833e-06    -7.72726153846154e-06
-    -7.72726153846787e-06    -7.72726153846154e-06
-    -7.72726153845486e-06    -7.72726153846154e-06
-    -7.72726153846354e-06    -7.72726153846154e-06
-    -7.72726153846007e-06    -7.72726153846154e-06
-    -7.72726153846527e-06    -7.72726153846154e-06
-    -7.72726153846354e-06    -7.72726153846154e-06
-    -7.72726153846354e-06    -7.72726153846154e-06
-
-foroverfeil:
-
-FE =
-
-     6.678007756152904e-18
-
-Relativ foroverfeil:
-
-rFE =
-
-     8.642140197932253e-13
-
-Feilforstorrelse:
-
-ans =
-
-     3.892073937509128e+03
-     
-
-Kondisjonstall til A:
-
-ans =
-
-     1.857401842242595e+04
+function y = correct_y(f, E, I, L, x)
+    y = (f/(24*E*I))*x^2*(x^2 - 4*L*x + 6*L^2);
+end
 \end{lstlisting}
-Vi vet fra teorien at kondisjonstallet til A er den maksimale feilforstørrelsen man kan oppnå. Med et kondisjonstall på $10^4$ kan man forvente $16-4=12$ korrekte desimaler i svaret. ******* SKRIV MER **********
+Dette er funksjonen for den korrekte løsningen, samme som i oppgave 4 (\ref{eq:oppgave4})
 
-\subsubsection{Oppgave 4e}
-Her skal vi sammenligne svaret fra oppgave 3, $y_c$, med den korrekte løsningen, $y_e$, fra oppgave 4c. Vi skal finne foroverfeilen $||y_c-y_e||_1$. Dette er en 1-norm som regnes ut som summen av absolutt-verdien til alle elementene i vektoren. Her er MATLAB-koden:
-\begin{lstlisting}
-disp('Oppgave 4e')
-disp('Sammenligner den eksakte losningen (ye) med vektoren (yc) fra opgave 3')
-
-yc = ebbeam(L,10,f,E,I);
-table(yc, ye)
-
-disp('foroverfeil: ||yc-ye||_1')
-% Denne foroverfeilen er en 1-norm, kan regnes paa to maater:
-sum(abs(yc-ye));
-norm(yc-ye, 1)
-\end{lstlisting}
-Her er resultatet av koden:
-\begin{lstlisting}
-Oppgave 4e
-Sammenligner den eksakte losningen (ye) med vektoren (yc) fra oppgave 3
-
-ans = 
-
-             yc                       ye          
-    _____________________    _____________________
-
-    -1.80624738461544e-04    -1.80624738461539e-04
-    -6.74847507692328e-04    -6.74847507692308e-04
-    -1.41698658461543e-03    -1.41698658461539e-03
-    -2.34908750769237e-03    -2.34908750769231e-03
-    -3.42092307692317e-03    -3.42092307692308e-03
-    -4.58999335384627e-03    -4.58999335384616e-03
-    -5.82152566153860e-03    -5.82152566153846e-03
-    -7.08847458461555e-03    -7.08847458461539e-03
-    -8.37152196923095e-03    -8.37152196923077e-03
-    -9.65907692307711e-03    -9.65907692307692e-03
-
-foroverfeil: ||yc-ye||_1
-
-ans =
-
-     9.980623098815311e-16
-\end{lstlisting}
-Vi ser at denne foroverfeilen er i samme størrelsesorden som $\epsilon_{mach}$, ******* HVORFOR? **********
+\includegraphics[width=\textwidth]{Oppgave5}
+Ut i fra resultatet over er det lett å se hvilken n-verdi som gir størst feil, når n = 20. Man ser også at når n øker så minker feilen, dette er fordi jo flere intervaller vi har jo mer nøyaktig blir estimeringen. Vi ser også ut i fra resultatet at kondisjonstallet stiger lineært når n øker. \\
+\includegraphics[width=\textwidth]{Oppgave5fig}
+Grafen viser kondisjonstallet i en rett linje (rød), mens den blå linjen er feilen. Vi ser at når n øker, minsker feilen mens kondisjonstallet forsetter å øke.
 
 \subsection{Oppgave 5}
 
@@ -446,7 +368,9 @@ Vi ser at denne foroverfeilen er i samme størrelsesorden som $\epsilon_{mach}$,
 \subsubsection{Oppgave 6a}
 Vi legger til en funksjon i Euler-likningen
 \begin{quote}
-$s(x) = -pgsin\frac{\pi}{L} x $
+\begin{equation} \label{eq:sin(x)}
+s(x) = -pgsin\frac{\pi}{L} x
+\end{equation}
 \end{quote} 
 til kraftdelen til f(x)
 \begin{quote}
@@ -454,7 +378,7 @@ $EIy^{(4)} = f(x) + s(x)$
 \end{quote}
 Skal bevise at
 \begin{quote}
-\begin{equation}
+\begin{equation}\label{eq:oppgave6a}
 y(x) = \frac{f}{24EI} x^2 (x^2 - 4Lx + 6L^2) - \frac{gpL}{EI\pi} (\frac{L^3}{\pi^3} sin\frac{\pi}{L}x - \frac{x^3}{6} + \frac{Lx^2}{2} - \frac{L^2 x}{\pi^2})
 \end{equation}
 \end{quote}
@@ -589,3 +513,178 @@ y'''(L) = 0 - \frac{gpL}{EI\pi} 0 = 0
 \end{equation*}
 \end{quote}
 Fjerde kriteriet stemmer fordi y'''(L) = 0.
+
+\subsubsection{Oppgave 6b}
+I denne oppgaven skal vi legge en sinusformet haug på stupebrettet og kjøre forløkka fra Oppgave 5 om igjen. Vi bruker den samme utformingen på oppgaven.
+
+\begin{lstlisting}
+format long;
+[E, I, D, d, w, f, g, L, p] = hentKonstanter();
+
+i_max = 11;
+
+n = zeros(i_max, 1)
+numeric = zeros(i_max, 1);
+actual = zeros(i_max, 1);
+error = zeros(i_max,1);
+cond_A = zeros(i_max,1);
+
+syms y(x) ;
+y(x) = correct_y_sin(f, E, I, L, p, g, x);
+
+
+for i = (1:i_max)
+    n(i) = 10*2^i;
+    y_num = ebbeam_s(L,n(i),f,E,I,p,g);
+    numeric(i) = y_num(n(i));
+    actual(i) = y(L);
+    error(i) = abs(actual(i) - numeric(i));
+    A = lagA(n(i));
+    cond_A(i) = condest(A);
+end
+
+T = table(n, numeric, actual, error, cond_A);
+disp(T);
+figure;
+subplot(2,1,1)
+plot(numeric);
+hold on;
+plot(actual);
+title('Actual vs numeric');
+subplot(2,1,2);
+loglog(n,error);
+hold on;
+plot(n,cond_A*eps, ':');
+hold on;
+h_sq = ((ones(i_max, 1))*(L^2)) ./ (n.^2);
+disp(h_sq);
+plot(n, h_sq, '--');
+title('Error, Theoretical Error and Condition Number');
+\end{lstlisting}
+For å ta sinushaugen i betrakning trenger vi å endre på den korrekte- og den numeriske formelen. Vi legger sinuskraften i den korrekte formelen:
+\\
+\begin{lstlisting}
+function y = correct_y_sin(f, E, I, L, p, g, x)
+    y = ((f/(24*E*I))*x^2*(x^2 - 4*L*x + 6*L^2)) - (((p*g*L)/(E*I*pi))*(((L^3)/(pi^3))*sin(pi*x/L)-(x^3)/6+(L*x^2)/2-x*(L^2)/(pi^2)));
+end
+\end{lstlisting}
+
+Denne kan se litt komplisert ut, men det er bare en omskriving av denne formelen fra Oppgave 6a (\ref{eq:oppgave6a})
+\\Vi trenger også å skrive om den numeriske løsningen:
+
+\begin{lstlisting}
+function y = ebbeam_s(L,n,f,E,I,p,g)
+
+h = L/n;
+
+x = sin_x((h:h:L),p,g,L)';
+
+b = repmat(f, n, 1);
+b = b + x;
+b = b * ((h^4/(E*I)));
+
+A = lagA(n);
+y = A\b;
+
+end
+\end{lstlisting}
+
+Her legger vi til kraften fra sinushaugen ved å opprette en vektor x som kaller på sinus-funksjonen i en løkke n-antall ganger. Sinusfunksjonen ser ut som følger
+
+\begin{lstlisting}
+function y = sin_x(x, p, g, L)
+
+y = (-p*g*(sin((pi/L)*x)));
+
+end
+\end{lstlisting}
+
+Dette er sinuskraften fra Oppgave 6a (\ref{eq:sin(x)})
+\\Dette produserer resultatet:
+
+\includegraphics[width=\textwidth]{oppgave6b}
+Vi ser her at den numeriske (blå) løsningen er ganske lik den korrekte løsningen. Vi ser også at når vi kommer over $10(2^{10})$ intervaller begynner resultatet å oppføre seg litt rart. I følge Taylorrekken skulle vi med flere iterasjoner få en mer nøyaktig løsning.
+
+\subsubsection{Oppgave 6c, d, e og f}
+Vi gjør som vi har gjort tidligere og regner ut feilmarginen og kondisjonstallet for A. Forskjellen i denne oppgaven er at vi ganger kondisjonstallet til a med $\epsilon_{mach}$ som er $2^{-52}$. Den teoretiske feilen $h^2 = L^2 / n^2$.Resultatet blir som følger:
+\\
+\includegraphics[width=\textwidth]{oppgave6numbers}
+\includegraphics[width=\textwidth]{oppgave6cd}
+Dette hadde vi ikke forventet. Vi skulle tro at jo flere iterasjoner vi hadde, jo mindre ble feilen. Vi ser også at den teoretiske feilen (gul) avtar med høyere n-verdi. Legg merke til at når feilen snur og begynner å bli større, følger den kondisjonstallet (rød). Vi konkluderer med at ved bunnpunktet blir kondisjonstallet dominerende, og feilen begynner å øke. Ut fra grafen ser vi også at den optimale verdien til n = $10(2^7) = 1280$.
+
+\subsubsection{Oppgave 7}
+I denne oppgaven skal vi bytte ut den sinusformede haugen med en person som veier 50kg og som står ytterst på stupebrettet. Vi antar at all vekten til personen er jevnt fordelt utover foten som er 30cm. Vi trenger å legge til kraft pr. enhetslengde definert ved: 
+
+\[ s_{2}(x) =
+  \begin{cases}
+    (-9.81)(50kg)/0.3kg/m       & \quad L - 0.3m \leq x \leq L\\
+    0N/m  & \quad 0m \leq x < L - 0.3m\\
+  \end{cases}
+\]
+
+\begin{lstlisting}
+format long;
+[E, I, D, d, w, f, g, L, p] = hentKonstanter();
+i_max = 11;
+
+n = zeros(i_max, 1);
+numeric = zeros(i_max, 1);
+actual = zeros(i_max, 1);
+error = zeros(i_max,1);
+cond_A = zeros(i_max,1);
+
+syms y(x);
+y(x) = correct_y(f,E,I,L,x);
+
+for i = (1:i_max)
+    n(i) = 10*2^i;
+    y_num = ebbeam_7(L,n(i),f,E,I,g);
+    numeric(i) = y_num(n(i));
+end
+
+T = table(n, numeric);
+figure;
+plot(numeric);
+
+disp(T);
+\end{lstlisting}
+Vi har i denne oppgaven valgt å lage en ny ebbeam-funksjon hvor vi fordeler kraften fra personen på stupebrettet.
+\begin{lstlisting}
+function y = ebbeam_7(L,n,f,E,I,g)
+
+h = L/n;
+b = zeros(n, 1);
+load = -g*50 / 0.3;
+
+for i = ceil(1.7/h):n
+    b(i) = load;
+end
+
+b = b + repmat(f, n, 1);
+b = b * ((h^4/(E*I)));
+
+A = lagA(n);
+y = A\b;
+
+end
+\end{lstlisting}
+Vi begynner med å opprette b-vektoren som får størrelsen n og fylles med 0. "load" er kraften fra personen i Newton fordelt på hans 30cm. For å fordele kraften pr. enhetslengde bruker vi en finulig forløkke som legger til kraften på de ytterste 30cm av stupebrettet. Når vi kjører skriptet til Oppgaven får vi følgende resultat:
+\begin{lstlisting}
+
+      n           numeric      
+    _____    __________________
+
+       20    -0.161606940171006
+       40    -0.151735608265121
+       80    -0.146855330241007
+      160    -0.144429229072343
+      320    -0.143219706797572
+      640    -0.142615828284291
+     1280    -0.142314058185972
+     2560     -0.14216085974436
+     5120     -0.14214359762075
+    10240    -0.141473578950692
+    20480    -0.149305718176302
+\end{lstlisting}
+\includegraphics[width=\textwidth]{oppgave7}
+Grafen viser hvor mye stupebrettet bøyer seg ytterst med forskjellige n-verdier. Ut fra resultatene kan vi se likheter fra oppgave 6. Vi begynner å få like resultater når n er større enn 160. Dette gir oss en trygghet om at svaret nærmer seg den korrekte løsningen. Denne trenden fortsetter frem til n blir større enn $10(2^10)$, da får vi et ulikt resultat, og til sist blir resultatet veldig forskjellig fra trenden. Vi vet at når kondisjonstallet øker, øker feilen i resultet gitt en liten feil i inn-dataen. Fra oppgave 6 vet vi også at kondisjonstallet øker lineært med antall intervaller, og her kan vi konkludere med at kondisjonstallet er så stort at vi får store feil i resultatet. Ut fra dette kan vi si at den beste verdien av n vil være lik den i oppgave 6, rundt $n = 10(2^7)$.
