@@ -44,6 +44,7 @@ rFE = (FE)/( max( abs(C) ) )
 disp('Feilforstørrelse:')
 rBE = 2^-52;
 rFE/rBE
+disp('Kondisjonstall til A:')
 cond(full(A))
 
 
@@ -54,5 +55,7 @@ disp('Sammenligner den eksakte løsningen (ye) med vektoren (yc) fra opgave 3')
 yc = ebbeam(L,10,f,E,I);
 table(yc, ye)
 
-disp('foroverfeil: ||yc-ye||1')
-max(abs(yc-ye))
+disp('foroverfeil: ||yc-ye||_1')
+% Denne foroverfeilen er en 1-norm, kan regnes på to måter:
+sum(abs(yc-ye));
+norm(yc-ye, 1)

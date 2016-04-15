@@ -268,7 +268,7 @@ y^{(6)}(x) = \frac{d}{dx}[0] = 0
 Slik har vi vist at $y^{(6)}(c) = 0$.
 
 \subsubsection{Oppgave 4c}
-Bruker her MATLAB til å regne ut den korrekte løsningen $y_e = [y(0.2) y(0.4) y(0.6) ... y(2.0)]$ 
+Bruker her MATLAB til å regne ut den korrekte løsningen $y_e = [y(0.2)\;\;y(0.4)\;\;y(0.6)\;\;...\;\;y(2.0)]^T$ Regner så ut den numerisk fjerdederiverte av $y(x)$ ved hjelp av $Diff_4(y)= Ay$. Her er MATLAB-koden:
 \begin{lstlisting}
 disp('Oppgave 4c')
 [E, I, D, d, w, f, g, L] = hentKonstanter();
@@ -288,7 +288,156 @@ disp('Regner ut C = Ay (A-matrisen er laget med lagA(10) fra oppgave 2)')
 A = lagA(10);
 C = A*ye
 \end{lstlisting}
+Resultatet av denne koden blir som følger:
+\begin{lstlisting}
+Oppgave 4c
 
+ye =
+
+    -1.806247384615386e-04
+    -6.748475076923080e-04
+    -1.416986584615385e-03
+    -2.349087507692309e-03
+    -3.420923076923078e-03
+    -4.589993353846155e-03
+    -5.821525661538464e-03
+    -7.088474584615388e-03
+    -8.371521969230772e-03
+    -9.659076923076925e-03
+
+Regner ut C = Ay (A-matrisen er laget med lagA(10) fra oppgave 2)
+
+C =
+
+    -7.727261538461477e-06
+    -7.727261538462236e-06
+    -7.727261538458333e-06
+    -7.727261538467874e-06
+    -7.727261538454863e-06
+    -7.727261538463537e-06
+    -7.727261538460067e-06
+    -7.727261538465272e-06
+    -7.727261538463537e-06
+    -7.727261538463537e-06
+\end{lstlisting}
+
+\subsubsection{Oppgave 4d}
+Her skal vi sammenligne svaret fra oppgave 4c med vektoren $b$ fra oppgave 3 og finne foroverfeil og relativ foroverfeil til $Diff_4(y)= Ay$. Etterpå skal vi anta at relativ bakoverfeil er $\epsilon_{mach} = 2^{-52}$, finne feilforstørrelsen og sammenligne den med kondisjonstallet til $A$. Her er MATLAB-koden:
+\begin{lstlisting}
+disp('Oppgave 4d')
+disp('Sammenligner svaret C fra c) med vektoren b fra oppgave 3')
+
+% Gjenskaper vektoren b fra oppgave 3.
+h = L/10;
+b = repmat(f, 10, 1) * h^4/(E*I);
+table(C, b)
+
+% Finner foroverfeil FE ved aa ta ||C - b||
+disp('foroverfeil:')
+FE = max( abs(C-b) )
+
+% Finner relativ foroverfeil rFE ved aa ta ||C - b|| / ||C||
+disp('Relativ foroverfeil:')
+rFE = (FE)/( max( abs(C) ) )
+
+% Antar at relativ bakoverfeil er rBE=2^-52 og regner ut
+% feilforstorrelsen som rFE/rBE, sammenligner med kondisjonstallet til A.
+disp('Feilforstorrelse:')
+rBE = 2^-52;
+rFE/rBE
+disp('Kondisjonstall til A:')
+cond(full(A))
+\end{lstlisting}
+Resultatet av koden blir som følger:
+\begin{lstlisting}
+Oppgave 4d
+Sammenligner svaret C fra c) med vektoren b fra oppgave 3
+
+ans = 
+
+              C                        b          
+    _____________________    _____________________
+
+    -7.72726153846148e-06    -7.72726153846154e-06
+    -7.72726153846224e-06    -7.72726153846154e-06
+    -7.72726153845833e-06    -7.72726153846154e-06
+    -7.72726153846787e-06    -7.72726153846154e-06
+    -7.72726153845486e-06    -7.72726153846154e-06
+    -7.72726153846354e-06    -7.72726153846154e-06
+    -7.72726153846007e-06    -7.72726153846154e-06
+    -7.72726153846527e-06    -7.72726153846154e-06
+    -7.72726153846354e-06    -7.72726153846154e-06
+    -7.72726153846354e-06    -7.72726153846154e-06
+
+foroverfeil:
+
+FE =
+
+     6.678007756152904e-18
+
+Relativ foroverfeil:
+
+rFE =
+
+     8.642140197932253e-13
+
+Feilforstorrelse:
+
+ans =
+
+     3.892073937509128e+03
+     
+
+Kondisjonstall til A:
+
+ans =
+
+     1.857401842242595e+04
+\end{lstlisting}
+Vi vet fra teorien at kondisjonstallet til A er den maksimale feilforstørrelsen man kan oppnå. Med et kondisjonstall på $10^4$ kan man forvente $16-4=12$ korrekte desimaler i svaret. ******* SKRIV MER **********
+
+\subsubsection{Oppgave 4e}
+Her skal vi sammenligne svaret fra oppgave 3, $y_c$, med den korrekte løsningen, $y_e$, fra oppgave 4c. Vi skal finne foroverfeilen $||y_c-y_e||_1$. Dette er en 1-norm som regnes ut som summen av absolutt-verdien til alle elementene i vektoren. Her er MATLAB-koden:
+\begin{lstlisting}
+disp('Oppgave 4e')
+disp('Sammenligner den eksakte losningen (ye) med vektoren (yc) fra opgave 3')
+
+yc = ebbeam(L,10,f,E,I);
+table(yc, ye)
+
+disp('foroverfeil: ||yc-ye||_1')
+% Denne foroverfeilen er en 1-norm, kan regnes paa to maater:
+sum(abs(yc-ye));
+norm(yc-ye, 1)
+\end{lstlisting}
+Her er resultatet av koden:
+\begin{lstlisting}
+Oppgave 4e
+Sammenligner den eksakte losningen (ye) med vektoren (yc) fra oppgave 3
+
+ans = 
+
+             yc                       ye          
+    _____________________    _____________________
+
+    -1.80624738461544e-04    -1.80624738461539e-04
+    -6.74847507692328e-04    -6.74847507692308e-04
+    -1.41698658461543e-03    -1.41698658461539e-03
+    -2.34908750769237e-03    -2.34908750769231e-03
+    -3.42092307692317e-03    -3.42092307692308e-03
+    -4.58999335384627e-03    -4.58999335384616e-03
+    -5.82152566153860e-03    -5.82152566153846e-03
+    -7.08847458461555e-03    -7.08847458461539e-03
+    -8.37152196923095e-03    -8.37152196923077e-03
+    -9.65907692307711e-03    -9.65907692307692e-03
+
+foroverfeil: ||yc-ye||_1
+
+ans =
+
+     9.980623098815311e-16
+\end{lstlisting}
+Vi ser at denne foroverfeilen er i samme størrelsesorden som $\epsilon_{mach}$, ******* HVORFOR? **********
 
 \subsection{Oppgave 6}
 \subsubsection{Oppgave 6a}
