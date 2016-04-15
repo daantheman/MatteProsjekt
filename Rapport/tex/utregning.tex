@@ -181,7 +181,7 @@ EIy'''' = f(x)
 \end{quote}
 er oppfylt av y(x), som er den vertikale forskyvningen av en L meter lang bjelke. Den korrekte løsningen av likningen med konstanten f(x) = f er;
 \begin{quote}
-\begin{equation}
+\begin{equation}\label{eq:oppgave4}
 y(x)=(f/24EI) x^2 (x^2-4Lx+6L^2)
 \end{equation}
 \end{quote}
@@ -289,9 +289,9 @@ A = lagA(10);
 C = A*ye
 \end{lstlisting}
 \subsubsection{Oppgave 5}
-Vi starter her med å hente inn konstantene vi fikk oppgitt i boken, deretter har vi definert at $n=10*2^{i}$ som oppgitt i oppgaven og bruker ebbeam-funksjon som er 
+Vi starter her med å hente inn konstantene vi fikk oppgitt i boken, deretter har vi definert at $n=10(2^{i})$ som oppgitt i oppgaven og bruker ebbeam-funksjonen som er 
 Euler-Bernoulli sin metode for å beregne hvor mye materialet bøyer seg under press. 
-Vi beregner den numeriske løsningen ved hjelp ebbeam-funksjonen, den faktiske løsningen, feilen og kondisjonstallet. 
+Vi beregner den numeriske løsningen ved hjelp av ebbeam-funksjonen, den faktiske løsningen, feilen og kondisjonstallet. 
 \begin{lstlisting}
 format long;
 [E, I, D, d, w, f, g, L, p] = hentKonstanter();
@@ -327,10 +327,39 @@ plot(log(n), log(cond_A));
 title('Error figure and Condition Number - Oppgave 5');
 \end{lstlisting}
 
+\begin{lstlisting}
+% Input:
+% E = young's modulus for a meterial
+% L = length
+% d = diameter
+% g = gravity
+% w = width
+% D = density
+function y = ebbeam(L,n,f,E,I)
+
+h = L/n;
+
+%legg til sinusformel
+b = repmat(f, n, 1) * h^4/(E*I);
+
+A = lagA(n);
+y = A\b;
+
+end
+\end{lstlisting}
+Her er ebbeam-funksjonen.
+
+\begin{lstlisting}
+function y = correct_y(f, E, I, L, x)
+    y = (f/(24*E*I))*x^2*(x^2 - 4*L*x + 6*L^2);
+end
+\end{lstlisting}
+Dette er funksjonen for den korrekte løsningen, samme som i oppgave 4 (\ref{eq:oppgave4})
+
 \includegraphics[width=\textwidth]{Oppgave5}
-Ut i fra resultatet over er det lett å se hvilken n-verdi som gir størst feil, når n = 20. Man ser også at når n øker så minker feilen, dette er fordi jo flere intervaller vi har jo mer nøyaktig blir estimeringen. Kondisjonstallet til A ser vi også ut i fra resultatet at den stiger kontinuerlig når n øker. \\
+Ut i fra resultatet over er det lett å se hvilken n-verdi som gir størst feil, når n = 20. Man ser også at når n øker så minker feilen, dette er fordi jo flere intervaller vi har jo mer nøyaktig blir estimeringen. Vi ser også ut i fra resultatet at kondisjonstallet stiger lineært når n øker. \\
 \includegraphics[width=\textwidth]{Oppgave5fig}
-Grafen viser kondisjonstallet i en rett linje (rød), mens den blå linjen er feilen. Vi ser at når n øker minsker feilen og beveger seg mot 0, mens kondisjonstallet forsetter å øke kontinuerlig. 
+Grafen viser kondisjonstallet i en rett linje (rød), mens den blå linjen er feilen. Vi ser at når n øker, minsker feilen mens kondisjonstallet forsetter å øke.
 
 \subsection{Oppgave 6}
 \subsubsection{Oppgave 6a}
