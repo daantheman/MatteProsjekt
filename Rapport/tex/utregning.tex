@@ -288,7 +288,125 @@ disp('Regner ut C = Ay (A-matrisen er laget med lagA(10) fra oppgave 2)')
 A = lagA(10);
 C = A*ye
 \end{lstlisting}
-\subsubsection{Oppgave 5}
+\subsubsection{Oppgave 4d}
+Her skal vi sammenligne svaret fra oppgave 4c med vektoren $b$ fra oppgave 3 og finne foroverfeil og relativ foroverfeil til $Diff_4(y)= Ay$. Etterpå skal vi anta at relativ bakoverfeil er $\epsilon_{mach} = 2^{-52}$, finne feilforstørrelsen og sammenligne den med kondisjonstallet til $A$. Her er MATLAB-koden:
+\begin{lstlisting}
+disp('Oppgave 4d')
+disp('Sammenligner svaret C fra c) med vektoren b fra oppgave 3')
+
+% Gjenskaper vektoren b fra oppgave 3.
+h = L/10;
+b = repmat(f, 10, 1) * h^4/(E*I);
+table(C, b)
+
+% Finner foroverfeil FE ved aa ta ||C - b||
+disp('foroverfeil:')
+FE = max( abs(C-b) )
+
+% Finner relativ foroverfeil rFE ved aa ta ||C - b|| / ||C||
+disp('Relativ foroverfeil:')
+rFE = (FE)/( max( abs(C) ) )
+
+% Antar at relativ bakoverfeil er rBE=2^-52 og regner ut
+% feilforstorrelsen som rFE/rBE, sammenligner med kondisjonstallet til A.
+disp('Feilforstorrelse:')
+rBE = 2^-52;
+rFE/rBE
+disp('Kondisjonstall til A:')
+cond(full(A))
+\end{lstlisting}
+Resultatet av koden blir som følger:
+\begin{lstlisting}
+Oppgave 4d
+Sammenligner svaret C fra c) med vektoren b fra oppgave 3
+
+ans = 
+
+              C                        b          
+    _____________________    _____________________
+
+    -7.72726153846148e-06    -7.72726153846154e-06
+    -7.72726153846224e-06    -7.72726153846154e-06
+    -7.72726153845833e-06    -7.72726153846154e-06
+    -7.72726153846787e-06    -7.72726153846154e-06
+    -7.72726153845486e-06    -7.72726153846154e-06
+    -7.72726153846354e-06    -7.72726153846154e-06
+    -7.72726153846007e-06    -7.72726153846154e-06
+    -7.72726153846527e-06    -7.72726153846154e-06
+    -7.72726153846354e-06    -7.72726153846154e-06
+    -7.72726153846354e-06    -7.72726153846154e-06
+
+foroverfeil:
+
+FE =
+
+     6.678007756152904e-18
+
+Relativ foroverfeil:
+
+rFE =
+
+     8.642140197932253e-13
+
+Feilforstorrelse:
+
+ans =
+
+     3.892073937509128e+03
+     
+
+Kondisjonstall til A:
+
+ans =
+
+     1.857401842242595e+04
+\end{lstlisting}
+Vi vet fra teorien at kondisjonstallet til A er den maksimale feilforstørrelsen man kan oppnå. Med et kondisjonstall på $10^4$ kan man forvente $16-4=12$ korrekte desimaler i svaret. ******* SKRIV MER **********
+
+\subsubsection{Oppgave 4e}
+Her skal vi sammenligne svaret fra oppgave 3, $y_c$, med den korrekte løsningen, $y_e$, fra oppgave 4c. Vi skal finne foroverfeilen $||y_c-y_e||_1$. Dette er en 1-norm som regnes ut som summen av absolutt-verdien til alle elementene i vektoren. Her er MATLAB-koden:
+\begin{lstlisting}
+disp('Oppgave 4e')
+disp('Sammenligner den eksakte losningen (ye) med vektoren (yc) fra opgave 3')
+
+yc = ebbeam(L,10,f,E,I);
+table(yc, ye)
+
+disp('foroverfeil: ||yc-ye||_1')
+% Denne foroverfeilen er en 1-norm, kan regnes paa to maater:
+sum(abs(yc-ye));
+norm(yc-ye, 1)
+\end{lstlisting}
+Her er resultatet av koden:
+\begin{lstlisting}
+Oppgave 4e
+Sammenligner den eksakte losningen (ye) med vektoren (yc) fra oppgave 3
+
+ans = 
+
+             yc                       ye          
+    _____________________    _____________________
+
+    -1.80624738461544e-04    -1.80624738461539e-04
+    -6.74847507692328e-04    -6.74847507692308e-04
+    -1.41698658461543e-03    -1.41698658461539e-03
+    -2.34908750769237e-03    -2.34908750769231e-03
+    -3.42092307692317e-03    -3.42092307692308e-03
+    -4.58999335384627e-03    -4.58999335384616e-03
+    -5.82152566153860e-03    -5.82152566153846e-03
+    -7.08847458461555e-03    -7.08847458461539e-03
+    -8.37152196923095e-03    -8.37152196923077e-03
+    -9.65907692307711e-03    -9.65907692307692e-03
+
+foroverfeil: ||yc-ye||_1
+
+ans =
+
+     9.980623098815311e-16
+\end{lstlisting}
+Vi ser at denne foroverfeilen er i samme størrelsesorden som $\epsilon_{mach}$, ******* HVORFOR? **********
+
+\subsection{Oppgave 5}
 Vi starter her med å hente inn konstantene vi fikk oppgitt i boken, deretter har vi definert at $n=10(2^{i})$ som oppgitt i oppgaven og bruker ebbeam-funksjonen som er 
 Euler-Bernoulli sin metode for å beregne hvor mye materialet bøyer seg under press. 
 Vi beregner den numeriske løsningen ved hjelp av ebbeam-funksjonen, den faktiske løsningen, feilen og kondisjonstallet. 
@@ -360,9 +478,6 @@ Dette er funksjonen for den korrekte løsningen, samme som i oppgave 4 (\ref{eq:
 Ut i fra resultatet over er det lett å se hvilken n-verdi som gir størst feil, når n = 20. Man ser også at når n øker så minker feilen, dette er fordi jo flere intervaller vi har jo mer nøyaktig blir estimeringen. Vi ser også ut i fra resultatet at kondisjonstallet stiger lineært når n øker. \\
 \includegraphics[width=\textwidth]{Oppgave5fig}
 Grafen viser kondisjonstallet i en rett linje (rød), mens den blå linjen er feilen. Vi ser at når n øker, minsker feilen mens kondisjonstallet forsetter å øke.
-
-\subsection{Oppgave 5}
-
 
 \subsection{Oppgave 6}
 \subsubsection{Oppgave 6a}
