@@ -144,31 +144,29 @@ Kan sende med A i fra forrige oppgave, men velger å lage A på nytt slik at det
 % g = gravity
 % w = width
 % D = density
-function y = ebbeam(E,L,d,D,w,n)
+function y = ebbeam(L,n,f,E,I)
 
-I = w*d^3/12;
 h = L/n;
-g = 9.81;
-b = repmat(-D*w*d*g , n,1) * h^4/(E*I);
+
+b = repmat(f, n, 1) * h^4/(E*I);
 
 A = lagA(n);
-
 y = A\b;
+
 end
+
 \end{lstlisting}
 Scriptet for å kjøre koden:
 \begin{lstlisting}
 disp('Oppgave 3')
 format long;
-E = 1.3e10;
-D = 480;
-w = 0.3;
-L = 2;
-d = 0.03;
+
+[E, I, D, d, w, f, g, L, p] = hentKonstanter();
+
 n = 10;
 
 disp('Numerisk losning')
-y = ebbeam(E,L,d,D,w,n)
+y = ebbeam(L,n,f,E,I)
 \end{lstlisting}
 
 \subsection{Oppgave 4}
@@ -288,7 +286,7 @@ disp('Regner ut C = Ay (A-matrisen er laget med lagA(10) fra oppgave 2)')
 A = lagA(10);
 C = A*ye
 \end{lstlisting}
-\subsubsection{Oppgave 5}
+\subsection{Oppgave 5}
 Vi starter her med å hente inn konstantene vi fikk oppgitt i boken, deretter har vi definert at $n=10(2^{i})$ som oppgitt i oppgaven og bruker ebbeam-funksjonen som er 
 Euler-Bernoulli sin metode for å beregne hvor mye materialet bøyer seg under press. 
 Vi beregner den numeriske løsningen ved hjelp av ebbeam-funksjonen, den faktiske løsningen, feilen og kondisjonstallet. 

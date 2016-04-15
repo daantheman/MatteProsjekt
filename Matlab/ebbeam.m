@@ -9,7 +9,6 @@ function y = ebbeam(L,n,f,E,I)
 
 h = L/n;
 
-%legg til sinusformel
 b = repmat(f, n, 1) * h^4/(E*I);
 
 A = lagA(n);
