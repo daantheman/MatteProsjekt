@@ -15,7 +15,6 @@ for i = (0.2:0.2:2)
 end
 ye = transpose(ye)
 
-
 % Lager samme A som oppgave 2 og regner ut A*ye.
 disp('Regner ut C = Ay (A-matrisen er laget med lagA(10) fra oppgave 2)')
 A = lagA(10);
