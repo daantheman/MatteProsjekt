@@ -495,7 +495,7 @@ function y = correct_y_sin(f, E, I, L, p, g, x)
 end
 \end{lstlisting}
 
-Denne kan se litt komplisert ut, men det er bare en omskriving av denne formelen fra Oppgave 6a \ref{eq:oppgave6a}
+Denne kan se litt komplisert ut, men det er bare en omskriving av denne formelen fra Oppgave 6a (\ref{eq:oppgave6a})
 \\Vi trenger også å skrive om den numeriske løsningen:
 
 \begin{lstlisting}
@@ -525,22 +525,92 @@ y = (-p*g*(sin((pi/L)*x)));
 end
 \end{lstlisting}
 
-Dette er sinuskraften fra Oppgave 6a \ref{eq:sin(x)}
+Dette er sinuskraften fra Oppgave 6a (\ref{eq:sin(x)})
 \\Dette produserer resultatet:
 
-\begin{lstlisting}
-n           numeric                actual                 error                   cond_A       
-    _____    __________________    __________________    ____________________    ____________________
+\includegraphics[width=\textwidth]{oppgave6b}
+Vi ser her at den numeriske (blå) løsningen er ganske lik den korrekte løsningen. Vi ser også at når vi kommer over $10(2^{10})$ intervaller begynner resultatet å oppføre seg litt rart. I følge Taylorrekken skulle vi med flere iterasjoner få en mer nøyaktig løsning.
 
-       20    -0.142296743307459    -0.141759047299156    0.000537696008302502        530302.499999359
-       40     -0.14189451217489    -0.141759047299156    0.000135464875733654        8449279.99991838
-       80    -0.141792978202451    -0.141759047299156    3.39309032945379e-05        134821259.989655
-      160    -0.141767533841095    -0.141759047299156     8.4865419386071e-06        2153877318.68512
-      320    -0.141761163686966    -0.141759047299156    2.11638781039136e-06        34434645672.3749
-      640     -0.14175956559191    -0.141759047299156    5.18292753548533e-07        550730051069.814
-     1280    -0.141759119405917    -0.141759047299156    7.21067612008408e-08        8809863858688.09
-     2560    -0.141756566974306    -0.141759047299156    2.48032484992389e-06         140942917022219
-     5120    -0.141814864008124    -0.141759047299156    5.58167089682315e-05    2.25493031838562e+15
-    10240    -0.141180520452791    -0.141759047299156    0.000578526846364835    3.61759978675708e+16
-    20480    -0.149054768002221    -0.141759047299156     0.00729572070306514    6.15713526613343e+17
+\subsubsection{Oppgave 6c, d, e og f}
+Vi gjør som vi har gjort tidligere og regner ut feilmarginen og kondisjonstallet for A. Forskjellen i denne oppgaven er at vi ganger kondisjonstallet til a med $\epsilon_{mach}$ som er $2^{-52}$. Den teoretiske feilen $h^2 = L^2 / n^2$.Resultatet blir som følger:
+\\
+\includegraphics[width=\textwidth]{oppgave6numbers}
+\includegraphics[width=\textwidth]{oppgave6cd}
+Dette hadde vi ikke forventet. Vi skulle tro at jo flere iterasjoner vi hadde, jo mindre ble feilen. Vi ser også at den teoretiske feilen (gul) avtar med høyere n-verdi. Legg merke til at når feilen snur og begynner å bli større, følger den kondisjonstallet (rød). Vi konkluderer med at ved bunnpunktet blir kondisjonstallet dominerende, og feilen begynner å øke. Ut fra grafen ser vi også at den optimale verdien til n = $10(2^7) = 1280$.
+
+\subsubsection{Oppgave 7}
+I denne oppgaven skal vi bytte ut den sinusformede haugen med en person som veier 50kg og som står ytterst på stupebrettet. Vi antar at all vekten til personen er jevnt fordelt utover foten som er 30cm. Vi trenger å legge til kraft pr. enhetslengde definert ved: 
+
+\[ s_{2}(x) =
+  \begin{cases}
+    (-9.81)(50kg)/0.3kg/m       & \quad L - 0.3m \leq x \leq L\\
+    0N/m  & \quad 0m \leq x < L - 0.3m\\
+  \end{cases}
+\]
+
+\begin{lstlisting}
+format long;
+[E, I, D, d, w, f, g, L, p] = hentKonstanter();
+i_max = 11;
+
+n = zeros(i_max, 1);
+numeric = zeros(i_max, 1);
+actual = zeros(i_max, 1);
+error = zeros(i_max,1);
+cond_A = zeros(i_max,1);
+
+syms y(x);
+y(x) = correct_y(f,E,I,L,x);
+
+for i = (1:i_max)
+    n(i) = 10*2^i;
+    y_num = ebbeam_7(L,n(i),f,E,I,g);
+    numeric(i) = y_num(n(i));
+end
+
+T = table(n, numeric);
+figure;
+plot(numeric);
+
+disp(T);
 \end{lstlisting}
+Vi har i denne oppgaven valgt å lage en ny ebbeam-funksjon hvor vi fordeler kraften fra personen på stupebrettet.
+\begin{lstlisting}
+function y = ebbeam_7(L,n,f,E,I,g)
+
+h = L/n;
+b = zeros(n, 1);
+load = -g*50 / 0.3;
+
+for i = ceil(1.7/h):n
+    b(i) = load;
+end
+
+b = b + repmat(f, n, 1);
+b = b * ((h^4/(E*I)));
+
+A = lagA(n);
+y = A\b;
+
+end
+\end{lstlisting}
+Vi begynner med å opprette b-vektoren som får størrelsen n og fylles med 0. "load" er kraften fra personen i Newton fordelt på hans 30cm. For å fordele kraften pr. enhetslengde bruker vi en finulig forløkke som legger til kraften på de ytterste 30cm av stupebrettet. Når vi kjører skriptet til Oppgaven får vi følgende resultat:
+\begin{lstlisting}
+
+      n           numeric      
+    _____    __________________
+
+       20    -0.161606940171006
+       40    -0.151735608265121
+       80    -0.146855330241007
+      160    -0.144429229072343
+      320    -0.143219706797572
+      640    -0.142615828284291
+     1280    -0.142314058185972
+     2560     -0.14216085974436
+     5120     -0.14214359762075
+    10240    -0.141473578950692
+    20480    -0.149305718176302
+\end{lstlisting}
+\includegraphics[width=\textwidth]{oppgave7}
+Grafen viser hvor mye stupebrettet bøyer seg ytterst med forskjellige n-verdier. Ut fra resultatene kan vi se likheter fra oppgave 6. Vi begynner å få like resultater når n er større enn 160. Dette gir oss en trygghet om at svaret nærmer seg den korrekte løsningen. Denne trenden fortsetter frem til n blir større enn $10(2^10)$, da får vi et ulikt resultat, og til sist blir resultatet veldig forskjellig fra trenden. Vi vet at når kondisjonstallet øker, øker feilen i resultet gitt en liten feil i inn-dataen. Fra oppgave 6 vet vi også at kondisjonstallet øker lineært med antall intervaller, og her kan vi konkludere med at kondisjonstallet er så stort at vi får store feil i resultatet. Ut fra dette kan vi si at den beste verdien av n vil være lik den i oppgave 6, rundt $n = 10(2^7)$.
