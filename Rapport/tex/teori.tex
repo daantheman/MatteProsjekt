@@ -15,8 +15,39 @@ Legge til ekstra kraft for haug og person.
 \subsection{Numerisk kontra Korrekt}
 
 \subsection{Taylors Teorem}
+Taylors Teorem er en måte å estimere en gitt funksjon på ved hjelp av polynomer. Man kan se på Taylors formel som en generalisering av "Mean Value Theorem", som sier at dersom funksjonen f er kontinuerlig i et lukket intervall [a,b] og f er deriverbar i det åpne intervallet (a,b), et punkt c, a < c < b eksisterer slik at :
+\begin{quote}
+\begin{equation}
+f'(c) = \frac{f(b) - f(a)}{b-a}
+\end{equation}
+\end{quote}
+Mer bestemt, la f være en funksjon slik at f og dens første n-deriverte er kontinuerlig i [a,b]. Videre, la $f^{(n+1)}(x)$ eksistere for alle x i (a,b). Da eksisterer det et tall c i (a,b) slik at:
+\begin{quote}
+\begin{equation}
+f(b) = f(a) + (b-a) \frac{f'(a)}{1!} + (b-a)^2 \frac{f''(a)}{2!} + .... + (b-a)^n \frac{f^{(n)}}{n!} + (b-a)^{(n+1)} \frac{f^{(n+1} (c)}{(n+1)!}
+\end{equation}
+\end{quote}
+Formelen sier også at dersom b < a, så vil [a,b] og (a,b) blir byttet ut med [b,a] og (b,a) henholdsvis. Man kan også se at dersom vi bytter ut b med x, står vi igjen med Taylor's formelen. \\
+En annen måte å skrive Taylor's formelen på er
+\begin{quote}
+\begin{equation}
+\sum_{i=0}^n (x-a)î \frac{f''(a)}{i!} + (x-a)^{n+1} \frac{f^{(n+1)} (c) }{(n+1)!}
+\end{equation}
+\end{quote}
+som også er kjent som n-te grad Taylor polynom (eller Taylor serie) med feil ledd.\\
+For å visualisere dette kan vi ta for oss funksjonen $f(x) = sin(x)$. Ved å regne ut flere ledd i Taylor-rekken vil vi kunne skape en tilnærming av funksjonen. Desto flere ledd, desto mer nøyaktig tilnærming:
+
+\includegraphics[width=\textwidth]{taylor_sinx}
+Grafen er en taylors-rekke av f(x) = sin(x), der x=3. Studerer man de blå striplette linjene ser vi at de inneholder ulikt antall prikker. 1 prikk tilsvarer første deriverte, 2prikker tilsvarer andre deriverte osv. Ut i fra grafen ser man at dersom man har et høyere derivasjonsledd vil den blå linjen følge funksjonen mer og mer, og vi får en mer nøyaktig tilnærming av funksjonen. 
+
+
+\subsection{Kondisjonstall}
 
 \subsection{Feil}
 Forover og bakoverfeil.
- 
+
 \subsection{MATLAB}
+
+\subsection{Teori tilknyttet oppgaver}
+\subsubsection{Oppgave 3}
+Møtte på et problem tilknyttet oppgave 3 hvor vi fikk positive verdier for y. Etter lang leting viste det seg at i vår lagA- metode så hadde vi klart å skreve -157/17 kontra -156/17 som det egentlig skulle være. Var spennende å se at en så liten feil kunne resultere til så forskjellige verdier. 
