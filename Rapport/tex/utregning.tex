@@ -268,7 +268,7 @@ y^{(6)}(x) = \frac{d}{dx}[0] = 0
 Slik har vi vist at $y^{(6)}(c) = 0$.
 
 \subsubsection{Oppgave 4c}
-Bruker her MATLAB til å regne ut den korrekte løsningen $y_e = [y(0.2)\;\;y(0.4)\;\;y(0.6)\;\;...\;\;y(2.0)]^T$ Regner så ut den numerisk fjerdederiverte av $y(x)$ ved hjelp av $Diff_4(y)= Ay$. Her er MATLAB-koden:
+Bruker her MATLAB til å regne ut den korrekte løsningen $y_e = [y(0.2) y(0.4) y(0.6) ... y(2.0)]$ 
 \begin{lstlisting}
 disp('Oppgave 4c')
 [E, I, D, d, w, f, g, L] = hentKonstanter();
@@ -288,162 +288,15 @@ disp('Regner ut C = Ay (A-matrisen er laget med lagA(10) fra oppgave 2)')
 A = lagA(10);
 C = A*ye
 \end{lstlisting}
-Resultatet av denne koden blir som følger:
-\begin{lstlisting}
-Oppgave 4c
 
-ye =
-
-    -1.806247384615386e-04
-    -6.748475076923080e-04
-    -1.416986584615385e-03
-    -2.349087507692309e-03
-    -3.420923076923078e-03
-    -4.589993353846155e-03
-    -5.821525661538464e-03
-    -7.088474584615388e-03
-    -8.371521969230772e-03
-    -9.659076923076925e-03
-
-Regner ut C = Ay (A-matrisen er laget med lagA(10) fra oppgave 2)
-
-C =
-
-    -7.727261538461477e-06
-    -7.727261538462236e-06
-    -7.727261538458333e-06
-    -7.727261538467874e-06
-    -7.727261538454863e-06
-    -7.727261538463537e-06
-    -7.727261538460067e-06
-    -7.727261538465272e-06
-    -7.727261538463537e-06
-    -7.727261538463537e-06
-\end{lstlisting}
-
-\subsubsection{Oppgave 4d}
-Her skal vi sammenligne svaret fra oppgave 4c med vektoren $b$ fra oppgave 3 og finne foroverfeil og relativ foroverfeil til $Diff_4(y)= Ay$. Etterpå skal vi anta at relativ bakoverfeil er $\epsilon_{mach} = 2^{-52}$, finne feilforstørrelsen og sammenligne den med kondisjonstallet til $A$. Her er MATLAB-koden:
-\begin{lstlisting}
-disp('Oppgave 4d')
-disp('Sammenligner svaret C fra c) med vektoren b fra oppgave 3')
-
-% Gjenskaper vektoren b fra oppgave 3.
-h = L/10;
-b = repmat(f, 10, 1) * h^4/(E*I);
-table(C, b)
-
-% Finner foroverfeil FE ved aa ta ||C - b||
-disp('foroverfeil:')
-FE = max( abs(C-b) )
-
-% Finner relativ foroverfeil rFE ved aa ta ||C - b|| / ||C||
-disp('Relativ foroverfeil:')
-rFE = (FE)/( max( abs(C) ) )
-
-% Antar at relativ bakoverfeil er rBE=2^-52 og regner ut
-% feilforstorrelsen som rFE/rBE, sammenligner med kondisjonstallet til A.
-disp('Feilforstorrelse:')
-rBE = 2^-52;
-rFE/rBE
-disp('Kondisjonstall til A:')
-cond(full(A))
-\end{lstlisting}
-Resultatet av koden blir som følger:
-\begin{lstlisting}
-Oppgave 4d
-Sammenligner svaret C fra c) med vektoren b fra oppgave 3
-
-ans = 
-
-              C                        b          
-    _____________________    _____________________
-
-    -7.72726153846148e-06    -7.72726153846154e-06
-    -7.72726153846224e-06    -7.72726153846154e-06
-    -7.72726153845833e-06    -7.72726153846154e-06
-    -7.72726153846787e-06    -7.72726153846154e-06
-    -7.72726153845486e-06    -7.72726153846154e-06
-    -7.72726153846354e-06    -7.72726153846154e-06
-    -7.72726153846007e-06    -7.72726153846154e-06
-    -7.72726153846527e-06    -7.72726153846154e-06
-    -7.72726153846354e-06    -7.72726153846154e-06
-    -7.72726153846354e-06    -7.72726153846154e-06
-
-foroverfeil:
-
-FE =
-
-     6.678007756152904e-18
-
-Relativ foroverfeil:
-
-rFE =
-
-     8.642140197932253e-13
-
-Feilforstorrelse:
-
-ans =
-
-     3.892073937509128e+03
-     
-
-Kondisjonstall til A:
-
-ans =
-
-     1.857401842242595e+04
-\end{lstlisting}
-Vi vet fra teorien at kondisjonstallet til A er den maksimale feilforstørrelsen man kan oppnå. Med et kondisjonstall på $10^4$ kan man forvente $16-4=12$ korrekte desimaler i svaret. ******* SKRIV MER **********
-
-\subsubsection{Oppgave 4e}
-Her skal vi sammenligne svaret fra oppgave 3, $y_c$, med den korrekte løsningen, $y_e$, fra oppgave 4c. Vi skal finne foroverfeilen $||y_c-y_e||_1$. Dette er en 1-norm som regnes ut som summen av absolutt-verdien til alle elementene i vektoren. Her er MATLAB-koden:
-\begin{lstlisting}
-disp('Oppgave 4e')
-disp('Sammenligner den eksakte losningen (ye) med vektoren (yc) fra opgave 3')
-
-yc = ebbeam(L,10,f,E,I);
-table(yc, ye)
-
-disp('foroverfeil: ||yc-ye||_1')
-% Denne foroverfeilen er en 1-norm, kan regnes paa to maater:
-sum(abs(yc-ye));
-norm(yc-ye, 1)
-\end{lstlisting}
-Her er resultatet av koden:
-\begin{lstlisting}
-Oppgave 4e
-Sammenligner den eksakte losningen (ye) med vektoren (yc) fra oppgave 3
-
-ans = 
-
-             yc                       ye          
-    _____________________    _____________________
-
-    -1.80624738461544e-04    -1.80624738461539e-04
-    -6.74847507692328e-04    -6.74847507692308e-04
-    -1.41698658461543e-03    -1.41698658461539e-03
-    -2.34908750769237e-03    -2.34908750769231e-03
-    -3.42092307692317e-03    -3.42092307692308e-03
-    -4.58999335384627e-03    -4.58999335384616e-03
-    -5.82152566153860e-03    -5.82152566153846e-03
-    -7.08847458461555e-03    -7.08847458461539e-03
-    -8.37152196923095e-03    -8.37152196923077e-03
-    -9.65907692307711e-03    -9.65907692307692e-03
-
-foroverfeil: ||yc-ye||_1
-
-ans =
-
-     9.980623098815311e-16
-\end{lstlisting}
-Vi ser at denne foroverfeilen er i samme størrelsesorden som $\epsilon_{mach}$, ******* HVORFOR? **********
 
 \subsection{Oppgave 6}
 \subsubsection{Oppgave 6a}
 Vi legger til en funksjon i Euler-likningen
 \begin{quote}
-$s(x) = -pgsin\frac{\pi}{L} x $
+\begin{equation} \label{eq:sin(x)}
+s(x) = -pgsin\frac{\pi}{L} x
+\end{equation}
 \end{quote} 
 til kraftdelen til f(x)
 \begin{quote}
@@ -451,7 +304,7 @@ $EIy^{(4)} = f(x) + s(x)$
 \end{quote}
 Skal bevise at
 \begin{quote}
-\begin{equation}
+\begin{equation}\label{eq:oppgave6a}
 y(x) = \frac{f}{24EI} x^2 (x^2 - 4Lx + 6L^2) - \frac{gpL}{EI\pi} (\frac{L^3}{\pi^3} sin\frac{\pi}{L}x - \frac{x^3}{6} + \frac{Lx^2}{2} - \frac{L^2 x}{\pi^2})
 \end{equation}
 \end{quote}
@@ -586,3 +439,108 @@ y'''(L) = 0 - \frac{gpL}{EI\pi} 0 = 0
 \end{equation*}
 \end{quote}
 Fjerde kriteriet stemmer fordi y'''(L) = 0.
+
+\subsubsection{Oppgave 6b}
+I denne oppgaven skal vi legge en sinusformet haug på stupebrettet og kjøre forløkka fra Oppgave 5 om igjen. Vi bruker den samme utformingen på oppgaven.
+
+\begin{lstlisting}
+format long;
+[E, I, D, d, w, f, g, L, p] = hentKonstanter();
+
+i_max = 11;
+
+n = zeros(i_max, 1)
+numeric = zeros(i_max, 1);
+actual = zeros(i_max, 1);
+error = zeros(i_max,1);
+cond_A = zeros(i_max,1);
+
+syms y(x) ;
+y(x) = correct_y_sin(f, E, I, L, p, g, x);
+
+
+for i = (1:i_max)
+    n(i) = 10*2^i;
+    y_num = ebbeam_s(L,n(i),f,E,I,p,g);
+    numeric(i) = y_num(n(i));
+    actual(i) = y(L);
+    error(i) = abs(actual(i) - numeric(i));
+    A = lagA(n(i));
+    cond_A(i) = condest(A);
+end
+
+T = table(n, numeric, actual, error, cond_A);
+disp(T);
+figure;
+subplot(2,1,1)
+plot(numeric);
+hold on;
+plot(actual);
+title('Actual vs numeric');
+subplot(2,1,2);
+loglog(n,error);
+hold on;
+plot(n,cond_A*eps, ':');
+hold on;
+h_sq = ((ones(i_max, 1))*(L^2)) ./ (n.^2);
+disp(h_sq);
+plot(n, h_sq, '--');
+title('Error, Theoretical Error and Condition Number');
+\end{lstlisting}
+For å ta sinushaugen i betrakning trenger vi å endre på den korrekte- og den numeriske formelen. Vi legger sinuskraften i den korrekte formelen:
+\\
+\begin{lstlisting}
+function y = correct_y_sin(f, E, I, L, p, g, x)
+    y = ((f/(24*E*I))*x^2*(x^2 - 4*L*x + 6*L^2)) - (((p*g*L)/(E*I*pi))*(((L^3)/(pi^3))*sin(pi*x/L)-(x^3)/6+(L*x^2)/2-x*(L^2)/(pi^2)));
+end
+\end{lstlisting}
+
+Denne kan se litt komplisert ut, men det er bare en omskriving av denne formelen fra Oppgave 6a \ref{eq:oppgave6a}
+\\Vi trenger også å skrive om den numeriske løsningen:
+
+\begin{lstlisting}
+function y = ebbeam_s(L,n,f,E,I,p,g)
+
+h = L/n;
+
+x = sin_x((h:h:L),p,g,L)';
+
+b = repmat(f, n, 1);
+b = b + x;
+b = b * ((h^4/(E*I)));
+
+A = lagA(n);
+y = A\b;
+
+end
+\end{lstlisting}
+
+Her legger vi til kraften fra sinushaugen ved å opprette en vektor x som kaller på sinus-funksjonen i en løkke n-antall ganger. Sinusfunksjonen ser ut som følger
+
+\begin{lstlisting}
+function y = sin_x(x, p, g, L)
+
+y = (-p*g*(sin((pi/L)*x)));
+
+end
+\end{lstlisting}
+
+Dette er sinuskraften fra Oppgave 6a \ref{eq:sin(x)}
+\\Dette produserer resultatet:
+
+\begin{lstlisting}
+n           numeric                actual                 error                   cond_A       
+    _____    __________________    __________________    ____________________    ____________________
+
+       20    -0.142296743307459    -0.141759047299156    0.000537696008302502        530302.499999359
+       40     -0.14189451217489    -0.141759047299156    0.000135464875733654        8449279.99991838
+       80    -0.141792978202451    -0.141759047299156    3.39309032945379e-05        134821259.989655
+      160    -0.141767533841095    -0.141759047299156     8.4865419386071e-06        2153877318.68512
+      320    -0.141761163686966    -0.141759047299156    2.11638781039136e-06        34434645672.3749
+      640     -0.14175956559191    -0.141759047299156    5.18292753548533e-07        550730051069.814
+     1280    -0.141759119405917    -0.141759047299156    7.21067612008408e-08        8809863858688.09
+     2560    -0.141756566974306    -0.141759047299156    2.48032484992389e-06         140942917022219
+     5120    -0.141814864008124    -0.141759047299156    5.58167089682315e-05    2.25493031838562e+15
+    10240    -0.141180520452791    -0.141759047299156    0.000578526846364835    3.61759978675708e+16
+    20480    -0.149054768002221    -0.141759047299156     0.00729572070306514    6.15713526613343e+17
+\end{lstlisting}

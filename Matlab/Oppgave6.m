@@ -1,3 +1,4 @@
+format long;
 [E, I, D, d, w, f, g, L, p] = hentKonstanter();
 
 i_max = 11;

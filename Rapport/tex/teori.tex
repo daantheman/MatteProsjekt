@@ -7,7 +7,7 @@ Flere av oppgavene i denne rapporten omhandler Euler-Bernoulli-bjelken. I følge
 EIy''''=f(x)
 \end{equation}
 \end{quote}
-Den vertikale forskyvningen av en $L$ meter lang bjelke, oppfyller likningen når $0\leq x\leq L$. Likningen inneholder noen konstanter; $E$ er en materialkonstant kalt Youngmodulusen. $I$ er et arealmoment til bjelkens tverrsnitt normalt på lengderetningen. $I$ er konstant langs hele bjelken. Høyresiden av likningen, $f(x)$, er en kraft som virker på bjelken per lengde-enhet målt i Newton per meter. Kraften inkluderer vekten til bjelken. Dette har vi fra læreboken.\footnote{Sauer, Timothy, (2012) Numerical Analysis second edition, side 102-.}
+Den vertikale forskyvningen av en $L$ meter lang bjelke, , oppfyller likningen når $0\leq x\leq L$. Likningen inneholder noen konstanter; $E$ er en materialkonstant kalt Youngmodulusen. $I$ er et arealmoment til bjelkens tverrsnitt normalt på lengderetningen. $I$ er konstant langs hele bjelken. Høyresiden av likningen, $f(x)$, er en kraft som virker på bjelken per lengde-enhet målt i Newton per meter. Kraften inkluderer vekten til bjelken. Dette har vi fra læreboken.\footnote{Sauer, Timothy, (2012) Numerical Analysis second edition, side 102-.}
 
 Hvorfor kan dette brukes på stupebrett?
 Legge til ekstra kraft for haug og person.
@@ -20,20 +20,28 @@ Legge til ekstra kraft for haug og person.
  \end{align*}
  
  \subsection{Kondisjonstall}
- Når vi snakker om kondisjonstallet til en funksjon f med et argument x måler vi omfanget av endringer til f med liten endring i x. Vi bruker dette til å se hvor sensitiv en funksjon er til endringer eller feil i x og størrelsen på feil som kan forekomme i f. Man skulle tro at en liten endring i x ikke vil ha et stort utfall på effekten til f, men dette skal vi vise kan bli ganske storslåtte. I matrisesammenheng kan vi se på den lineære likningen Ax = b. Kondisjonstallet til A vil fortelle oss om hvor store endringene i b blir med små endringer i x. I MATLAB benytter vi oss av Cond(A) for å finne kondisjonstallet. Denne metoden bygger på funksjonen:
+Når vi snakker om kondisjonstallet til en funksjon f med et argument x måler vi omfanget av endringer i resultatet til f med liten endring i x. Vi bruker dette til å estimere hvor sensitiv en funksjon er til endringer eller feil i x, og størrelsen på feil som kan forekomme. I matrisesammenheng kan vi se på den lineære likningen Ax = b. Kondisjonstallet til A vil fortelle oss om hvor store endringene i b blir med små endringer i x. I MATLAB benytter vi oss av "cond(A)" for å finne kondisjonstallet. Denne metoden bygger på funksjonen:
  \
  \begin{equation}
  Cond(A) = ||A^{-1}|| \cdot ||A||
  \end{equation}
  
+Dersom kondisjonstallet er 1 vil dette bety at en feil i x ikke vil kunne lage større skade enn feilen i seg selv. Så kort sagt er et lavt kondisjonstall bra, og et stort dårlig. 
+
+USIKKER PÅ OM DETTE STEMMER, MÅ SJEKKES I MATLAB!!!:
+
+Gitt matrisen A = $\begin{matrix}
  
+	1 & 1/2\\
+	1/2 & 1/3
+	
+\end{matrix}$
+\\
+og vektorene $b_1 = (2/3, 1)'$ og $b_2 = (2/3, 1)'$
+\\Her skulle vi tro at $Ab_1$ og $Ab_2$ ville blitt ganske lik, men med å regne ut finner vi at:\\$x_1 = (0, 3)'$ og $x_2 = (1, 1)'$
+\\Med dette ser vi at noen matriser er veldig sensitive til små endringer i inn-data.
 
 \subsection{Feil}
 Forover og bakoverfeil.
  
 \subsection{MATLAB}
-For å løse de vanskeligste problemene i dette prosjektet, trenger vi hjelp fra et digitalt verktøy. Og vi bruker MatLab. MatLab, kort for Matrix Laboratory, er et omfattende matematikk-program utiklet av MathWorks. Siden programmet først ble utgitt i 1984 har det blitt et veldig populært program til bruk på utdanningsinstitusjoner. I 2004 hadde MatLab over 1 million registrerte lisenser på verdensbasis.
-MatLab opererer med et eget script-språk basert på programmeringsspråket C, så det er veldig nyttig for oss dataingeniører. Med MatLab kan vi utføre matriseregning, behandle og plotte funksjoner, implementere algoritmer osv. Det at det opererer på et script-språk gjør også at vi kan skrive egne funksjoner for å løse problemer. Ved å skrive kode for å løse oppgavene er det lett for oss å vise fremgangsmåte i tillegg til riktig svar.
-
-\subsubsection{Viktige MATLAB-metoder}
-bla bla bla.
