@@ -12,8 +12,6 @@ Den vertikale forskyvningen av en $L$ meter lang bjelke, oppfyller likningen nå
 Hvorfor kan dette brukes på stupebrett?
 Legge til ekstra kraft for haug og person.
 
-\subsection{Numerisk kontra Korrekt}
-
 \subsection{Taylors Teorem}
 Taylors Teorem er en måte å estimere en gitt funksjon på ved hjelp av polynomer. Man kan se på Taylors formel som en generalisering av "Mean Value Theorem", som sier at dersom funksjonen f er kontinuerlig i et lukket intervall [a,b] og f er deriverbar i det åpne intervallet (a,b), et punkt c, a < c < b eksisterer slik at :
 \begin{quote}
@@ -59,3 +57,46 @@ Møtte på et problem tilknyttet oppgave 3 hvor vi fikk positive verdier for y. 
 For å løse de vanskeligste problemene i dette prosjektet, trenger vi hjelp fra et digitalt verktøy. Og vi bruker MatLab. MatLab, kort for Matrix Laboratory, er et omfattende matematikk-program utiklet av MathWorks. Siden programmet først ble utgitt i 1984 har det blitt et veldig populært program til bruk på utdanningsinstitusjoner. I 2004 hadde MatLab over 1 million registrerte lisenser på verdensbasis.
 MatLab opererer med et eget script-språk basert på programmeringsspråket C, så det er veldig nyttig for oss dataingeniører. Med MatLab kan vi utføre matriseregning, behandle og plotte funksjoner, implementere algoritmer osv. Det at det opererer på et script-språk gjør også at vi kan skrive egne funksjoner for å løse problemer. Ved å skrive kode for å løse oppgavene er det lett for oss å vise fremgangsmåte i tillegg til riktig svar.
 
+\subsubsection{Oppgave 5}
+Vi starter her med å hente inn konstantene vi fikk oppgitt i boken, deretter har vi definert at $n=10*2^{i}$ som oppgitt i oppgaven og bruker ebbeam-funksjon som er 
+Euler-Bernoulli sin metode for å beregne hvor mye materialet bøyer seg under press. 
+Vi beregner den numeriske løsningen ved hjelp ebbeam-funksjonen, den faktiske løsningen, feilen og kondisjonstallet. 
+\begin{lstlisting}
+format long;
+[E, I, D, d, w, f, g, L, p] = hentKonstanter();
+n = 10;
+
+i_max = 11;
+
+n = zeros(i_max, 1);
+y_num_L = zeros(i_max, 1);
+y_actual_L = zeros(i_max, 1);
+error = zeros(i_max,1);
+cond_A = zeros(i_max,1);
+
+syms y(x) y(z);
+y(x) = correct_y(f,E,I,L,x);
+
+for i = (1:i_max)
+    n(i) = 10*2^i;
+    y_num = ebbeam(L,n(i),f,E,I);
+    y_num_L(i) = y_num(n(i));
+    y_actual_L(i) = y(L);
+    error(i) = abs(y_actual_L(i) - y_num(n(i)));
+    A = lagA(n(i));
+    cond_A(i) = condest(A);
+end
+
+T = table(n, y_num_L, y_actual_L, error, cond_A);
+disp(T);
+figure;
+plot(log(n), log(error));
+hold on;
+plot(log(n), log(cond_A));
+title('Error figure and Condition Number - Oppgave 5');
+\end{lstlisting}
+
+\includegraphics[width=\textwidth]{Oppgave5}
+Ut i fra resultatet over er det lett å se hvilken n-verdi som gir størst feil, når n = 20. Man ser også at når n øker så minker feilen, dette er fordi jo flere intervaller vi har jo mer nøyaktig blir estimeringen. Kondisjonstallet til A ser vi også ut i fra resultatet at den stiger kontinuerlig når n øker. \\
+\includegraphics[width=\textwidth]{Oppgave5fig}
+Grafen viser kondisjonstallet i en rett linje (rød), mens den blå linjen er feilen. Vi ser at når n øker minsker feilen og beveger seg mot 0, mens kondisjonstallet forsetter å øke kontinuerlig. 
