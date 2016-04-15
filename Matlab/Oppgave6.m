@@ -1,3 +1,4 @@
+format long;
 [E, I, D, d, w, f, g, L, p] = hentKonstanter();
 
 i_max = 11;
@@ -25,12 +26,12 @@ end
 T = table(n, numeric, actual, error, cond_A);
 disp(T);
 figure;
-subplot(2,1,1)
-plot(numeric);
-hold on;
-plot(actual);
-title('Actual vs numeric');
-subplot(2,1,2);
+%subplot(2,1,1)
+%plot(numeric);
+%hold on;
+%plot(actual);
+%title('Actual vs numeric');
+%subplot(2,1,2);
 loglog(n,error);
 hold on;
 plot(n,cond_A*eps, ':');
