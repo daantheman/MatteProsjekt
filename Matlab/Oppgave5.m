@@ -26,8 +26,7 @@ end
 T = table(n, y_num_L, y_actual_L, error, cond_A);
 disp(T);
 figure;
-subplot(2,1,1);
 plot(log(n), log(error));
-title('Error figure - Oppgave 5');
-subplot(2,1,2);
-plot(log(cond_A));
+hold on;
+plot(log(n), log(cond_A));
+title('Error figure and Condition Number - Oppgave 5');

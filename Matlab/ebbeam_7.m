@@ -10,8 +10,6 @@ for i = ceil(1.7/h):n
     b(i) = load;
 end
 
-disp(b)
-
 b = b + repmat(f, n, 1);
 b = b * ((h^4/(E*I)));
 
