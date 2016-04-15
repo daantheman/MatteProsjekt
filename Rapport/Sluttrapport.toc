@@ -3,16 +3,20 @@
 \contentsline {section}{\numberline {1}Innledning}{4}{section.1}
 \contentsline {section}{\numberline {2}Teori}{5}{section.2}
 \contentsline {subsection}{\numberline {2.1}Eurler-Bernoulli}{5}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Taylors Teorem}{5}{subsection.2.2}
-\contentsline {section}{\numberline {3}Utregning}{6}{section.3}
-\contentsline {subsection}{\numberline {3.1}Oppgave 1}{6}{subsection.3.1}
-\contentsline {subsubsection}{\numberline {3.1.1}Oppgave 5.1.21}{6}{subsubsection.3.1.1}
-\contentsline {subsubsection}{\numberline {3.1.2}Oppgave 5.1.22a}{7}{subsubsection.3.1.2}
-\contentsline {subsection}{\numberline {3.2}Oppgave 2}{8}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Oppgave 3}{8}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Oppgave 4}{9}{subsection.3.4}
-\contentsline {subsubsection}{\numberline {3.4.1}Oppgave 4a}{9}{subsubsection.3.4.1}
-\contentsline {subsubsection}{\numberline {3.4.2}Oppgave 4b}{11}{subsubsection.3.4.2}
-\contentsline {subsection}{\numberline {3.5}Oppgave 6}{11}{subsection.3.5}
-\contentsline {subsubsection}{\numberline {3.5.1}Oppgave 6a}{11}{subsubsection.3.5.1}
-\contentsline {section}{\numberline {4}Vedlegg}{14}{section.4}
+\contentsline {subsection}{\numberline {2.2}Numerisk kontra Korrekt}{5}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Taylors Teorem}{5}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Kondisjonstall}{5}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Feil}{6}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}MATLAB}{6}{subsection.2.6}
+\contentsline {section}{\numberline {3}Utregning}{7}{section.3}
+\contentsline {subsection}{\numberline {3.1}Oppgave 1}{7}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Oppgave 5.1.21}{7}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Oppgave 5.1.22a}{8}{subsubsection.3.1.2}
+\contentsline {subsection}{\numberline {3.2}Oppgave 2}{9}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Oppgave 3}{9}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Oppgave 4}{10}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}Oppgave 4a}{10}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}Oppgave 4b}{12}{subsubsection.3.4.2}
+\contentsline {subsection}{\numberline {3.5}Oppgave 6}{12}{subsection.3.5}
+\contentsline {subsubsection}{\numberline {3.5.1}Oppgave 6a}{12}{subsubsection.3.5.1}
+\contentsline {section}{\numberline {4}Vedlegg}{15}{section.4}

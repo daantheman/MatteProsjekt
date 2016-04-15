@@ -15,6 +15,18 @@ Legge til ekstra kraft for haug og person.
 \subsection{Numerisk kontra Korrekt}
 
 \subsection{Taylors Teorem}
+\begin{align*}
+ \sum_{k = 0}^{\infty}\frac{f^{(k)}(a)}{k!}(x-a)^{k}
+ \end{align*}
+ 
+ \subsection{Kondisjonstall}
+ Når vi snakker om kondisjonstallet til en funksjon f med et argument x måler vi omfanget av endringer til f med liten endring i x. Vi bruker dette til å se hvor sensitiv en funksjon er til endringer eller feil i x og størrelsen på feil som kan forekomme i f. Man skulle tro at en liten endring i x ikke vil ha et stort utfall på effekten til f, men dette skal vi vise kan bli ganske storslåtte. I matrisesammenheng kan vi se på den lineære likningen Ax = b. Kondisjonstallet til A vil fortelle oss om hvor store endringene i b blir med små endringer i x. I MATLAB benytter vi oss av Cond(A) for å finne kondisjonstallet. Denne metoden bygger på funksjonen:
+ \
+ \begin{equation}
+ Cond(A) = ||A^{-1}|| \cdot ||A||
+ \end{equation}
+ 
+ 
 
 \subsection{Feil}
 Forover og bakoverfeil.

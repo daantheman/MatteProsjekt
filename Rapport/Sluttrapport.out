@@ -1,16 +1,20 @@
 \BOOKMARK [1][-]{section.1}{Innledning}{}% 1
 \BOOKMARK [1][-]{section.2}{Teori}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{Eurler-Bernoulli}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{Taylors Teorem}{section.2}% 4
-\BOOKMARK [1][-]{section.3}{Utregning}{}% 5
-\BOOKMARK [2][-]{subsection.3.1}{Oppgave 1}{section.3}% 6
-\BOOKMARK [3][-]{subsubsection.3.1.1}{Oppgave 5.1.21}{subsection.3.1}% 7
-\BOOKMARK [3][-]{subsubsection.3.1.2}{Oppgave 5.1.22a}{subsection.3.1}% 8
-\BOOKMARK [2][-]{subsection.3.2}{Oppgave 2}{section.3}% 9
-\BOOKMARK [2][-]{subsection.3.3}{Oppgave 3}{section.3}% 10
-\BOOKMARK [2][-]{subsection.3.4}{Oppgave 4}{section.3}% 11
-\BOOKMARK [3][-]{subsubsection.3.4.1}{Oppgave 4a}{subsection.3.4}% 12
-\BOOKMARK [3][-]{subsubsection.3.4.2}{Oppgave 4b}{subsection.3.4}% 13
-\BOOKMARK [2][-]{subsection.3.5}{Oppgave 6}{section.3}% 14
-\BOOKMARK [3][-]{subsubsection.3.5.1}{Oppgave 6a}{subsection.3.5}% 15
-\BOOKMARK [1][-]{section.4}{Vedlegg}{}% 16
+\BOOKMARK [2][-]{subsection.2.2}{Numerisk kontra Korrekt}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Taylors Teorem}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Kondisjonstall}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.5}{Feil}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.6}{MATLAB}{section.2}% 8
+\BOOKMARK [1][-]{section.3}{Utregning}{}% 9
+\BOOKMARK [2][-]{subsection.3.1}{Oppgave 1}{section.3}% 10
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Oppgave 5.1.21}{subsection.3.1}% 11
+\BOOKMARK [3][-]{subsubsection.3.1.2}{Oppgave 5.1.22a}{subsection.3.1}% 12
+\BOOKMARK [2][-]{subsection.3.2}{Oppgave 2}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.3}{Oppgave 3}{section.3}% 14
+\BOOKMARK [2][-]{subsection.3.4}{Oppgave 4}{section.3}% 15
+\BOOKMARK [3][-]{subsubsection.3.4.1}{Oppgave 4a}{subsection.3.4}% 16
+\BOOKMARK [3][-]{subsubsection.3.4.2}{Oppgave 4b}{subsection.3.4}% 17
+\BOOKMARK [2][-]{subsection.3.5}{Oppgave 6}{section.3}% 18
+\BOOKMARK [3][-]{subsubsection.3.5.1}{Oppgave 6a}{subsection.3.5}% 19
+\BOOKMARK [1][-]{section.4}{Vedlegg}{}% 20
