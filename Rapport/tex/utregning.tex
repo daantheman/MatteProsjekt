@@ -132,7 +132,10 @@ full(A)
 \end{lstlisting}
 
 \subsection{Oppgave 3}
-
+Møtte på et problem tilknyttet oppgave 3 hvor vi fikk positive verdier for y. Etter lang leting viste det seg at i vår lagA- metode så hadde vi klart å skreve -157/17 kontra -156/17 som det egentlig skulle være. Var spennende å se at en så liten feil kunne resultere til så forskjellige verdier.
+\\
+Da vi fikk rettet opp i problemet gikk resten ganske smertefritt.
+\\
 ebbeam.m
 \\
 Kan sende med A i fra forrige oppgave, men velger å lage A på nytt slik at dette kan kjøres som et eget skript.
@@ -286,6 +289,23 @@ disp('Regner ut C = Ay (A-matrisen er laget med lagA(10) fra oppgave 2)')
 A = lagA(10);
 C = A*ye
 \end{lstlisting}
+Resultatet blir:
+\begin{lstlisting}
+Regner ut C = Ay (A-matrisen er laget med lagA(10) fra oppgave 2)
+
+C =
+
+    -7.727261538461477e-06
+    -7.727261538462236e-06
+    -7.727261538458333e-06
+    -7.727261538467874e-06
+    -7.727261538454863e-06
+    -7.727261538463537e-06
+    -7.727261538460067e-06
+    -7.727261538465272e-06
+    -7.727261538463537e-06
+    -7.727261538463537e-06
+\end{lstlisting}
 
 \subsubsection{Oppgave 4d}
 Her skal vi sammenligne svaret fra oppgave 4c med vektoren $b$ fra oppgave 3 og finne foroverfeil og relativ foroverfeil til $Diff_4(y)= Ay$. Etterpå skal vi anta at relativ bakoverfeil er $\epsilon_{mach} = 2^{-52}$, finne feilforstørrelsen og sammenligne den med kondisjonstallet til $A$. Her er MATLAB-koden:
@@ -360,7 +380,7 @@ ans =
 
      1.857401842242595e+04
 \end{lstlisting}
-Vi vet fra teorien at kondisjonstallet til A er den maksimale feilforstørrelsen man kan oppnå. Med et kondisjonstall på $10^4$ kan man forvente $16-4=12$ korrekte desimaler i svaret. ******* SKRIV MER **********
+Vi vet fra teorien at kondisjonstallet til A er den maksimale feilforstørrelsen man kan oppnå. Med et kondisjonstall på $10^4$ kan man forvente $16-4=12$ korrekte desimaler i svaret. Feilforstørrelsen er mye mindre enn kondisjonstallet. Hadde feilforstørrelsen vært lik kondisjonstallet hadde det vært værste utfall. Vi kan kunkludere med at har en grei feilforstørrelse.
 
 \subsubsection{Oppgave 4e}
 Her skal vi sammenligne svaret fra oppgave 3, $y_c$, med den korrekte løsningen, $y_e$, fra oppgave 4c. Vi skal finne foroverfeilen $||y_c-y_e||_1$. Dette er en 1-norm som regnes ut som summen av absolutt-verdien til alle elementene i vektoren. Her er MATLAB-koden:
@@ -403,7 +423,7 @@ ans =
 
      9.980623098815311e-16
 \end{lstlisting}
-Vi ser at denne foroverfeilen er i samme størrelsesorden som $\epsilon_{mach}$, ******* HVORFOR? **********
+Vi ser at denne foroverfeilen er i samme størrelsesorden som $\epsilon_{mach}$, vi tenker at dette er fordi datamaskinen får avrundingsfeil på grunn av avrunning ved flyttall. Denne feilen er på ca på $\epsilon_{mach}$, så det at feilestimatet ligger i nærheten er å forvente.
 
 \subsection{Oppgave 5}
 Vi starter her med å hente inn konstantene vi fikk oppgitt i boken, deretter har vi definert at $n=10(2^{i})$ som oppgitt i oppgaven og bruker ebbeam-funksjonen som er 
