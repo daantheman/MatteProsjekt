@@ -267,6 +267,29 @@ y^{(6)}(x) = \frac{d}{dx}[0] = 0
 \end{equation}
 Slik har vi vist at $y^{(6)}(c) = 0$.
 
+\subsubsection{Oppgave 4c}
+Bruker her MATLAB til å regne ut den korrekte løsningen $y_e = [y(0.2) y(0.4) y(0.6) ... y(2.0)]$ 
+\begin{lstlisting}
+disp('Oppgave 4c')
+[E, I, D, d, w, f, g, L] = hentKonstanter();
+
+% Regner ut den eksakte losningen ye.
+ye = zeros(1,10);
+count = 1;
+for i = (0.2:0.2:2)
+    ye(count) = correct_y(f,E,I,L,i);
+    count = count + 1;
+end
+ye = transpose(ye)
+
+
+% Lager samme A som oppgave 2 og regner ut A*ye.
+disp('Regner ut C = Ay (A-matrisen er laget med lagA(10) fra oppgave 2)')
+A = lagA(10);
+C = A*ye
+\end{lstlisting}
+
+
 \subsection{Oppgave 6}
 \subsubsection{Oppgave 6a}
 Vi legger til en funksjon i Euler-likningen
